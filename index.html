@@ -1,0 +1,676 @@
+  <!DOCTYPE html>
+
+  <html lang="zh-Hant">
+  <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Document</title>
+  <!-- ✅ 外部 CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="css/icofont.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+  <nav class="navbar">
+    <div class="nav-inner">
+
+      <!-- LOGO -->
+      <a class="logo" href="#">
+        <img src="photo/logo.png" alt="">
+        <h2>柿子購物</h2>
+      </a>
+
+      <!-- 手機漢堡 -->
+      <input class="nav-toggle" id="nav-toggle" type="checkbox"/>
+      <label class="burger" for="nav-toggle" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- 主選單 -->
+      <ul class="nav-list">
+        <li><a href="#home">回首頁</a></li>
+        <li><a href="#event">最新優惠</a></li>
+
+
+        <!-- 全部商品 -->
+        <li class="has-mega">
+          <a class="nav-link" href="cart.html">
+            全部商品 <i class="fa-solid fa-angle-down" style="margin-left:6px;"></i>
+          </a>
+
+          <div class="mega">
+  <div class="mega-inner">
+
+    <div class="mega-col" data-mega-col="types">
+      <h4>依種類</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="brands">
+      <h4>依品牌</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="audiences">
+      <h4>依對象</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col is-scroll" data-mega-col="prices">
+      <h4>依價格</h4>
+      <div class="mega-links"></div>
+    </div>
+
+  </div>
+</div>
+        </li>
+
+       
+        <li><a href="#deal">優惠搶先購</a></li>
+        <li><a href="#tribe">族群選購</a></li>
+        <li><a href="#contact">聯絡我們</a></li>
+      </ul>
+
+      <!-- 右側功能區 -->
+      <div class="nav-more">
+
+        <!-- 展開更多 -->
+        <input class="more-toggle" id="more-toggle" type="checkbox"/>
+        <label class="more-btn" for="more-toggle" aria-label="展開更多">⋯</label>
+
+        <!-- 搜尋 -->
+        <button class="nav-search-btn" id="openSearch" type="button" aria-label="搜尋">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <a aria-label="購物車" class="nav-cart" href="cart.html" id="cartLink">🛒
+          <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+        <!-- ✅ 會員 -->
+        <a class="nav-member" href="member.html" aria-label="會員中心">
+          <i class="fa-solid fa-user"></i>
+        </a>
+        
+        <!-- 展開更多 overlay -->
+        <div class="more-overlay">
+          <div class="more-panel">
+
+            <div class="more-head">
+              <div class="more-actions">
+                <button class="more-chip" id="moreExpandAll" type="button">全部展開</button>
+                <button class="more-chip" id="moreCollapseAll" type="button">全部收合</button>
+              </div>
+              <label class="more-close" for="more-toggle" aria-label="關閉">✕</label>
+            </div>
+
+            <div class="more-body">
+            <!-- ✅ 抽屜裡的「完整導覽」會由 JS 自動生成 -->
+            <div class="more-nav" id="moreNav"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="hero-slider">
+
+      <input checked class="s-radio" id="s1" name="s" type="radio"/>
+      <input class="s-radio" id="s2" name="s" type="radio"/>
+      <input class="s-radio" id="s3" name="s" type="radio"/>
+
+      <div class="slides">
+
+        <!-- 第1張 -->
+        <div class="slide" style="background-image:url('photo/img1.png');"></div>
+
+        <!-- 第2張 -->
+        <div class="slide" style="background-image:url('photo/img2.png');"></div>
+
+        <!-- 第3張 -->
+        <div class="slide" style="background-image:url('photo/img3.png');"></div>
+
+      </div>
+
+      <!-- 左右箭頭 -->
+      <label aria-label="上一張" class="arrow prev a-s1" for="s3">‹</label>
+      <label aria-label="下一張" class="arrow next a-s1" for="s2">›</label>
+
+      <label aria-label="上一張" class="arrow prev a-s2" for="s1">‹</label>
+      <label aria-label="下一張" class="arrow next a-s2" for="s3">›</label>
+
+      <label aria-label="上一張" class="arrow prev a-s3" for="s2">‹</label>
+      <label aria-label="下一張" class="arrow next a-s3" for="s1">›</label>
+
+    </div>
+  </section>
+
+
+
+  <section class="about-only" id="event">
+  <div class="about-banners">
+  <a aria-label="活動圖1" class="about-banner" href="#">
+  <img alt="活動圖 1" src="photo/event1.png"/>
+  </a>
+  <a aria-label="活動圖2" class="about-banner" href="#">
+  <img alt="活動圖 2" src="photo/event2.png"/>
+  </a>
+  <a aria-label="活動圖3" class="about-banner" href="#">
+  <img alt="活動圖 3" src="photo/banner3.jpg"/>
+  </a>
+  </div>
+  </section>
+
+
+  <section class="section-products" id="products">
+    <div class="products-container">
+
+      <header class="products-header">
+        <h2>
+          <a class="h2-link" href="cart.html">全部商品</a>
+        </h2>
+        <hr class="line" />
+        <p>最新熱銷保健食品推薦</p>
+      </header>
+
+      <!-- 分頁 radio（保留給你原本的 CSS 用） -->
+      <input type="radio" name="p" id="p1" class="p-radio" checked />
+      <input type="radio" name="p" id="p2" class="p-radio" />
+      <input type="radio" name="p" id="p3" class="p-radio" />
+      <input type="radio" name="p" id="p4" class="p-radio" />
+      <input type="radio" name="p" id="p5" class="p-radio" />
+
+      <div class="products-slider">
+        <div class="products-track" id="featuredTrack">
+          <!-- JS 會自動產生 products-page + products-grid + product-card -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 優惠搶先購 ===================== -->
+  <section class="deal-sec" id="deal">
+    <header class="deal-head">
+      <h2 class="deal-title">
+        <i class="fa-solid fa-fire deal-ico" aria-hidden="true"></i>
+        優惠搶先購
+      </h2>
+    </header>
+
+    <div class="deal-grid">
+      <a class="deal-card" href="#" aria-label="優惠1">
+        <img src="photo/banner1.jpg" alt="優惠搶先購 1" />
+      </a>
+      <a class="deal-card" href="#" aria-label="優惠2">
+        <img src="photo/banner2.jpg" alt="優惠搶先購 2" />
+      </a>
+      <a class="deal-card" href="#" aria-label="優惠3">
+        <img src="photo/banner3.jpg" alt="優惠搶先購 3" />
+      </a>
+
+      <a class="deal-card" href="#" aria-label="優惠4">
+        <img src="photo/banner1.jpg" alt="優惠搶先購 4" />
+      </a>
+      <a class="deal-card" href="#" aria-label="優惠5">
+        <img src="photo/banner2.jpg" alt="優惠搶先購 5" />
+      </a>
+      <a class="deal-card" href="#" aria-label="優惠6">
+        <img src="photo/banner3.jpg" alt="優惠搶先購 6" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== 族群專區 ===================== -->
+  <section class="tribe-sec" id="tribe">
+    <header class="tribe-head">
+      <h2 class="tribe-title">
+        <i class="fa-solid fa-layer-group"></i>
+        族群專區 選購指南
+      </h2>
+    </header>
+
+    <div class="tribe-grid">
+      <a class="tribe-card" href="#tribe-veg" aria-label="素食專區">
+        <img src="photo/tribe-1.jpg" alt="素食專區" />
+      </a>
+      <a class="tribe-card" href="#tribe-kids" aria-label="兒童專區">
+        <img src="photo/tribe-2.jpg" alt="兒童專區" />
+      </a>
+      <a class="tribe-card" href="#tribe-mom" aria-label="孕媽咪專區">
+        <img src="photo/tribe-3.jpg" alt="孕媽咪專區" />
+      </a>
+      <a class="tribe-card" href="#tribe-growth" aria-label="成長關鍵專區">
+        <img src="photo/tribe-4.jpg" alt="成長關鍵專區" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="site-footer" id="contact">
+    <div class="footer-inner">
+
+      <div class="footer-col">
+        <h4 class="footer-title">客服中心</h4>
+        <ul class="footer-list">
+          <li>
+            <a class="footer-link" href="tel:0226705915">
+              <i class="fa-solid fa-phone"></i>
+              客服電話：
+            </a>
+          </li>
+          <li>
+            <span class="footer-text">
+              <i class="fa-regular fa-clock"></i>
+              服務時間：
+            </span>
+          </li>
+          <li>
+            <span class="footer-text">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+          </li>
+          <li>
+            <span class="footer-text">
+              <i class="fa-solid fa-file-invoice"></i>
+              統一編號：
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">關於我們</h4>
+        <ul class="footer-list">
+          <li><a class="footer-link" href="#about">品牌介紹</a></li>
+          <li><a class="footer-link" href="#feature">特色</a></li>
+          <li><a class="footer-link" href="#join">加入</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">購物導覽</h4>
+        <ul class="footer-list">
+          <li><a class="footer-link" href="#products">全部商品</a></li>
+          <li><a class="footer-link" href="#deal">優惠搶先購</a></li>
+          <li><a class="footer-link" href="#tribe">族群專區</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">客服說明</h4>
+        <ul class="footer-list">
+          <li><a class="footer-link" href="#policy-privacy">隱私權政策</a></li>
+          <li><a class="footer-link" href="#policy-member">會員權益</a></li>
+          <li><a class="footer-link" href="#policy-ship">配送說明</a></li>
+          <li><a class="footer-link" href="#policy-return">退換貨政策</a></li>
+        </ul>
+
+        <div class="footer-social">
+          <span class="footer-social-label">追蹤我們</span>
+          <a class="social-btn is-line" href="#" aria-label="LINE">
+            <i class="fa-brands fa-line"></i>
+          </a>
+          <a class="social-btn is-fb" href="#" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a class="social-btn is-yt" href="#" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <span>© All rights reserved.</span>
+        <span class="footer-bottom-split">｜</span>
+        <a class="footer-bottom-link" href="#policy-privacy">隱私權</a>
+        <a class="footer-bottom-link" href="#policy-return">退換貨</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== Modal（保留你的結構，往下照貼） ===================== -->
+  <div class="modal" id="modal-product1">
+    <a class="modal-backdrop" href="#products" aria-label="關閉"></a>
+
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <a class="modal-close" href="#products" aria-label="關閉">✕</a>
+
+      <div class="modal-grid">
+        <div class="modal-img">
+          <img src="photo/LINE_ALBUM_OEM的 DM電子檔嗎_241204_17.jpg" alt="OMEGA-3德國高濃度魚油軟膠囊" />
+        </div>
+
+        <div class="modal-body">
+          <h3 class="modal-title">OMEGA-3 德國高濃度 魚油軟膠囊（滴狀 B款）</h3>
+          <div class="modal-price">價格：</div>
+
+          <div class="modal-block">
+            <h4>商品功能</h4>
+            <p></p>
+          </div>
+
+          <div class="modal-block">
+            <h4>成分 / 規格</h4>
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ✅ 你剩下 modal-product2 ~ modal-product17 直接照這個格式貼（不用改） -->
+
+  <!-- ===================== 回到最上方 ===================== -->
+  <button class="back-to-top" id="backToTop" aria-label="回到最上方">↑</button>
+
+  <!-- ===================== 搜尋視窗 ===================== -->
+  <div class="search-modal" id="searchModal" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true">
+
+      <div class="search-head">
+        <div class="search-head-title">搜尋</div>
+        <button class="search-close" id="closeSearch" aria-label="關閉">✕</button>
+      </div>
+
+      <div class="search-top">
+        <select class="search-select" id="searchType">
+          <option value="all">全部</option>
+          <option value="product">商品</option>
+          <option value="brand">品牌</option>
+          <option value="tag">關鍵字</option>
+        </select>
+
+        <input class="search-input" id="searchInput" type="text" placeholder="想找什麼呢？" />
+        <button class="search-btn" id="searchBtn">搜尋</button>
+      </div>
+
+      <div class="search-body">
+        <div class="search-results" id="searchResults">
+          <div class="search-empty">請輸入關鍵字開始搜尋</div>
+        </div>
+      </div>
+
+      <div class="search-hot">
+        <div class="hot-title">大家最愛搜</div>
+        <div class="hot-tags" id="hotTags">
+          <button class="hot-tag" data-q="益生菌">益生菌</button>
+          <button class="hot-tag" data-q="巧克力">巧克力</button>
+          <button class="hot-tag" data-q="沐浴乳">沐浴乳</button>
+          <button class="hot-tag" data-q="B群">B群</button>
+          <button class="hot-tag" data-q="魚油">魚油</button>
+          <button class="hot-tag" data-q="鈣鎂">鈣鎂</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== Cart Drawer (index.html 也要有) ===== -->
+<div class="drawer-mask hidden" id="mask"></div>
+<aside aria-label="購物車內容" class="drawer hidden" id="drawer">
+  <div class="drawer-head">
+    <h3>購物車</h3>
+    <button class="drawer-close" id="closeCart">關閉</button>
+  </div>
+  <div class="drawer-body" id="cartList"></div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <div>總計</div>
+      <div id="totalPrice">NT$0</div>
+    </div>
+    <button class="checkout" id="checkoutBtn">結帳（示範）</button>
+  </div>
+</aside>
+  <script>
+  /* ========== ESC 關閉 modal ========== */
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      const modal = document.querySelector(".modal:target");
+      if(modal) location.hash = "#products";
+    }
+  });
+
+  /* ========== 回到最上方按鈕 ========== */
+  (() => {
+    const btn = document.getElementById("backToTop");
+    if(!btn) return;
+
+    const SHOW_AT = 200;
+    const toggleBtn = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      btn.classList.toggle("is-show", y > SHOW_AT);
+    };
+
+    window.addEventListener("scroll", toggleBtn, { passive: true });
+    toggleBtn();
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  })();
+
+  /* ========== 服務項目進場動畫 ========== */
+  (() => {
+    const sec = document.querySelector("#service");
+    if(!sec) return;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          sec.classList.add("is-inview");
+          io.unobserve(sec);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    io.observe(sec);
+  })();
+
+  /* ========== 手機點選選單後關閉漢堡 ========== */
+  (() => {
+    const navToggle = document.getElementById('nav-toggle');
+    if(!navToggle) return;
+
+    document.querySelectorAll('.nav-list a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.matchMedia('(max-width: 860px)').matches) {
+          navToggle.checked = false;
+        }
+      });
+    });
+  })();
+
+  /* ========== 手機 Mega 展開（第一下展開、第二下才跳錨點） ========== */
+  (() => {
+    const items = document.querySelectorAll('.has-mega');
+
+    items.forEach(item => {
+      const link = item.querySelector('a.nav-link');
+      if(!link) return;
+
+      link.addEventListener('click', (e) => {
+        if (!window.matchMedia('(max-width: 860px)').matches) return;
+
+        const href = link.getAttribute('href') || '';
+        const isHashLink = href.startsWith('#');
+
+        // 第一次點：先展開 mega（不跳）
+        if (!item.classList.contains('is-open')) {
+          e.preventDefault();
+          items.forEach(x => x.classList.remove('is-open'));
+          item.classList.add('is-open');
+          return;
+        }
+
+        // 第二次點：如果是錨點，允許跳轉並順便收起漢堡/mega
+        if (isHashLink) {
+          // 關掉 mega
+          items.forEach(x => x.classList.remove('is-open'));
+
+          // 關掉漢堡
+          const navToggle = document.getElementById('nav-toggle');
+          if (navToggle) navToggle.checked = false;
+
+          // ✅ 直接用 JS smooth scroll（更穩，避免某些情況 hash 被擋）
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+        // 不是 hash 的話就照原本預設行為（會跳頁）
+      });
+    });
+  })();
+
+
+  /* ========== 展開更多：鎖背景 ========== */
+  (() => {
+    const toggle = document.getElementById('more-toggle');
+    if(!toggle) return;
+
+    let savedY = 0;
+
+    const lock = () => {
+      savedY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${savedY}px`;
+      document.body.style.width = '100%';
+    };
+
+    const unlock = () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, savedY);
+    };
+
+    toggle.addEventListener('change', () => {
+      toggle.checked ? lock() : unlock();
+    });
+  })();
+
+  /* ========== 展開更多：手風琴（只用 details.open） ========== */
+  (() => {
+    const overlay = document.querySelector('.more-overlay');
+    const toggle  = document.getElementById('more-toggle');
+    if(!overlay || !toggle) return;
+
+    const btnOpen  = document.getElementById('moreExpandAll');
+    const btnClose = document.getElementById('moreCollapseAll');
+
+    const accs = () => Array.from(overlay.querySelectorAll('details.more-acc'));
+
+    const syncIcon = (d) => {
+      const icon = d.querySelector('.more-icon');
+      if(icon) icon.textContent = d.open ? '－' : '＋';
+    };
+
+    accs().forEach(d => {
+      syncIcon(d);
+      d.addEventListener('toggle', () => syncIcon(d));
+    });
+
+    btnOpen?.addEventListener('click', () => accs().forEach(d => d.open = true));
+    btnClose?.addEventListener('click', () => accs().forEach(d => d.open = false));
+
+    overlay.addEventListener('click', e => {
+      if(e.target === overlay){
+        toggle.checked = false;
+        toggle.dispatchEvent(new Event('change'));
+      }
+    });
+  })();
+  </script>
+  <script>
+  (() => {
+    const getNavH = () => {
+      const nav = document.querySelector('.navbar');
+      return nav ? Math.round(nav.getBoundingClientRect().height) : 64;
+    };
+
+    const fixHashScroll = () => {
+      if (!location.hash) return;
+      const el = document.querySelector(location.hash);
+      if (!el) return;
+
+      const navH = getNavH();
+      const y = el.getBoundingClientRect().top + window.pageYOffset - navH - 10;
+      window.scrollTo({ top: y, behavior: 'auto' });
+    };
+
+    // ✅ 等畫面排版穩定後再校正（兩次保險）
+    window.addEventListener('load', () => {
+      setTimeout(fixHashScroll, 0);
+      setTimeout(fixHashScroll, 120);
+    });
+
+    // ✅ 如果 hash 改變也校正
+    window.addEventListener('hashchange', () => {
+      setTimeout(fixHashScroll, 0);
+    });
+  })();
+  </script>
+
+  <script>
+/* ========== ✅ 每個 section 往下滑淡入 ========== */
+(() => {
+  // 你要「每個 section 都要」，我也把 footer 算進去
+  const targets = Array.from(document.querySelectorAll("section, footer.site-footer"));
+
+  if (!targets.length) return;
+
+  // 先全部套上 reveal 初始狀態
+  targets.forEach(el => el.classList.add("reveal"));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-show");
+        io.unobserve(entry.target); // ✅ 只進場一次（不會反覆閃）
+      }
+    });
+  }, {
+    threshold: 0.18,
+    rootMargin: "0px 0px -10% 0px" // 讓它提早一點進場
+  });
+
+  targets.forEach(el => io.observe(el));
+})();
+</script>
+
+
+<script>
+(() => {
+  const nav = document.querySelector('.navbar');
+  if (!nav) return;
+
+  const onScroll = () => {
+    nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+
+<script src="products_api.js"></script>
+<script src="nav_mega_dynamic.js"></script>
+<script src="nav_more_full.js"></script>
+<script src="search_new.js"></script>
+<script src="cart_store.js"></script>
+<script src="cart_page.js"></script>
+<script src="featured_products.js"></script>
+
+
+  </body>
+  </html>

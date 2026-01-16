@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>結帳</title>
+  <link rel="stylesheet" href="cartstyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <nav class="navbar">
+  <div class="nav-inner">
+
+    <a class="logo" href="index.html#home">
+      <img src="photo/logo.png" alt="">
+      <h2>柿子購物</h2>
+    </a>
+
+    <!-- ✅ 手機漢堡 -->
+    <input class="nav-toggle" id="nav-toggle" type="checkbox"/>
+    <label aria-label="開啟選單" class="burger" for="nav-toggle">
+      <span></span><span></span><span></span>
+    </label>
+
+    <!-- ✅ 主選單 -->
+    <ul class="nav-list">
+      <li><a href="index.html#home">回首頁</a></li>
+      <li><a href="index.html#event">最新優惠</a></li>
+
+      <li class="has-mega">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link" href="index.html#products">
+          全部商品 <i class="fa-solid fa-angle-down" style="margin-left:6px;"></i>
+        </a>
+
+        <div class="mega">
+  <div class="mega-inner">
+
+    <div class="mega-col" data-mega-col="types">
+      <h4>依種類</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="brands">
+      <h4>依品牌</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="audiences">
+      <h4>依對象</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col is-scroll" data-mega-col="prices">
+      <h4>依價格</h4>
+      <div class="mega-links"></div>
+    </div>
+
+  </div>
+</div>
+      </li>
+
+    
+
+      <li class="hide-md"><a href="index.html#deal">優惠搶先購</a></li>
+      <li class="hide-md"><a href="index.html#tribe">族群選購</a></li>
+      <li><a href="index.html#contact">聯絡我們</a></li>
+    </ul>
+
+    <!-- ✅ 右側 ⋯ -->
+    <div class="nav-more">
+      <input class="more-toggle" id="more-toggle" type="checkbox"/>
+      <label aria-label="展開更多" class="more-btn" for="more-toggle">⋯</label>
+
+      <!-- 🔍 搜尋按鈕 -->
+      <button aria-label="開啟搜尋" class="nav-search-btn" id="openSearch" type="button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+      <a aria-label="購物車" class="nav-cart" href="cart.html" id="cartLink">🛒
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+
+      <!-- 👤 會員中心 -->
+      <a aria-label="會員中心" class="nav-member" href="member.html">
+         <i class="fa-regular fa-user"></i>
+      </a>
+
+      <div aria-label="更多選單" aria-modal="true" class="more-overlay" role="dialog">
+        <div class="more-panel">
+          <div class="more-head">
+            <div class="more-actions">
+              <button class="more-chip" id="moreExpandAll" type="button">全部展開</button>
+              <button class="more-chip" id="moreCollapseAll" type="button">全部收合</button>
+            </div>
+            <label aria-label="關閉" class="more-close" for="more-toggle">✕</label>
+          </div>
+
+          <div class="more-body">
+          <!-- ✅ 抽屜裡的「完整導覽」會由 JS 自動生成 -->
+          <div class="more-nav" id="moreNav"></div>
+          </div>
+        </div>
+      </div><!-- /.more-overlay -->
+    </div><!-- /.nav-more -->
+  </div><!-- /.nav-inner -->
+</nav>
+
+<main class="checkout-wrap" style="padding-top:64px;">
+  <section class="checkout-card" style="max-width:1200px;margin:40px auto;padding:30px;border-radius:18px;background:#fff;border:1px solid #e5e7eb;">
+    <h2 style="font-size:24px;margin-bottom:20px;">購物清單</h2>
+
+    <div style="overflow:auto;">
+      <table style="width:100%;border-collapse:collapse;min-width:720px;">
+        <thead>
+          <tr style="text-align:left;border-bottom:2px solid #111;">
+            <th style="padding:14px 8px;">品名</th>
+            <th style="padding:14px 8px;width:140px;">價格</th>
+            <th style="padding:14px 8px;width:160px;">數量</th>
+            <th style="padding:14px 8px;width:140px;">小計</th>
+            <th style="padding:14px 8px;width:80px;"></th>
+          </tr>
+        </thead>
+        <tbody id="checkoutTbody">
+          <tr><td colspan="5" style="padding:26px 8px;color:#6b7280;">載入中…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:18px;align-items:center;margin-top:24px;">
+      <div style="font-weight:900;font-size:18px;">合計金額</div>
+      <div id="checkoutTotal" style="font-weight:900;font-size:22px;">NT$0</div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px;">
+      <a href="cart.html" style="padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;text-decoration:none;color:#111;font-weight:800;">繼續購物
+</a>
+      <button id="placeOrder" style="padding:12px 14px;border-radius:12px;border:none;background:#111827;color:#fff;font-weight:800;cursor:pointer;">送出訂單（示範）</button>
+    </div>
+  </section>
+</main>
+
+<script src="products_api.js"></script>
+<script src="nav_more_full.js"></script>
+<script src="nav_mega_dynamic.js"></script>
+<script src="cart_store.js"></script>
+<script src="cart_checkout.js"></script>
+</body>
+</html>

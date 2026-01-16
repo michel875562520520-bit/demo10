@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>網購介面</title>
+  <link rel="stylesheet" href="cartstyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+
+    <a class="logo" href="index.html#home">
+      <img src="photo/logo.png" alt="">
+      <h2>柿子購物</h2>
+    </a>
+
+    <!-- ✅ 手機漢堡 -->
+    <input class="nav-toggle" id="nav-toggle" type="checkbox"/>
+    <label aria-label="開啟選單" class="burger" for="nav-toggle">
+      <span></span><span></span><span></span>
+    </label>
+
+    <!-- ✅ 主選單 -->
+    <ul class="nav-list">
+      <li><a href="index.html#home">回首頁</a></li>
+      <li><a href="index.html#event">最新優惠</a></li>
+
+      <li class="has-mega">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link" href="index.html#products">
+          全部商品 <i class="fa-solid fa-angle-down" style="margin-left:6px;"></i>
+        </a>
+
+        <div class="mega">
+  <div class="mega-inner">
+
+    <div class="mega-col" data-mega-col="types">
+      <h4>依種類</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="brands">
+      <h4>依品牌</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="audiences">
+      <h4>依對象</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col is-scroll" data-mega-col="prices">
+      <h4>依價格</h4>
+      <div class="mega-links"></div>
+    </div>
+
+  </div>
+</div>
+      </li>
+
+    
+
+      <li class="hide-md"><a href="index.html#deal">優惠搶先購</a></li>
+      <li class="hide-md"><a href="index.html#tribe">族群選購</a></li>
+      <li><a href="index.html#contact">聯絡我們</a></li>
+    </ul>
+
+    <!-- ✅ 右側 ⋯ -->
+    <div class="nav-more">
+      <input class="more-toggle" id="more-toggle" type="checkbox"/>
+      <label aria-label="展開更多" class="more-btn" for="more-toggle">⋯</label>
+
+      <!-- 🔍 搜尋按鈕 -->
+      <button aria-label="開啟搜尋" class="nav-search-btn" id="openSearch" type="button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+      <a aria-label="購物車" class="nav-cart" href="cart.html" id="cartLink">🛒
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+
+      <!-- 👤 會員中心 -->
+      <a aria-label="會員中心" class="nav-member" href="member.html">
+         <i class="fa-regular fa-user"></i>
+      </a>
+
+      <div aria-label="更多選單" aria-modal="true" class="more-overlay" role="dialog">
+        <div class="more-panel">
+          <div class="more-head">
+            <div class="more-actions">
+              <button class="more-chip" id="moreExpandAll" type="button">全部展開</button>
+              <button class="more-chip" id="moreCollapseAll" type="button">全部收合</button>
+            </div>
+            <label aria-label="關閉" class="more-close" for="more-toggle">✕</label>
+          </div>
+
+          <div class="more-body">
+          <!-- ✅ 抽屜裡的「完整導覽」會由 JS 自動生成 -->
+          <div class="more-nav" id="moreNav"></div>
+          </div>
+        </div>
+      </div><!-- /.more-overlay -->
+    </div><!-- /.nav-more -->
+  </div><!-- /.nav-inner -->
+</nav>
+
+<!-- radios（類型篩選） -->
+<input checked id="f-all" name="filter" type="radio"/>
+<input id="f-food" name="filter" type="radio"/>
+<input id="f-c3" name="filter" type="radio"/>
+<input id="f-cloth" name="filter" type="radio"/>
+<input id="f-home" name="filter" type="radio"/>
+
+<div id="app">
+  <div class="wrap">
+    <div class="panel">
+      <h2>搜尋</h2>
+      <div class="field">
+        <label for="kw">關鍵字（打字即時篩選）</label>
+        <input autocomplete="off" id="kw" placeholder="例如：商品A、功能、耳機..." type="text"/>
+      </div>
+
+      <h2>商品篩選</h2>
+
+<div class="filters" id="filters">
+  <div class="filters-top">
+    <button type="button" class="fbtn" id="clearFilters">清除篩選</button>
+    <div class="filters-hint" id="filterHint">未套用分類篩選</div>
+  </div>
+
+  <div class="selected-tags" id="selectedTags"></div>
+
+  <!-- 種類 -->
+  <details class="facet" open>
+    <summary class="facet-title">
+  <span>種類</span>
+  <span class="facet-right">
+    <span class="facet-count" data-count="types"></span>
+    <span class="facet-sub">可多選</span>
+  </span>
+</summary>
+    <div class="facet-body" id="facetTypes">
+      <!-- JS 會自動塞選項 -->
+    </div>
+  </details>
+
+  <!-- 品牌 -->
+  <details class="facet">
+    <summary class="facet-title">
+  <span>品牌</span>
+  <span class="facet-right">
+    <span class="facet-count" data-count="brands"></span>
+    <span class="facet-sub">可多選</span>
+  </span>
+</summary>
+    <div class="facet-body" id="facetBrands">
+      <!-- JS 會自動塞選項 -->
+    </div>
+  </details>
+
+  <!-- 對象 -->
+  <details class="facet">
+    <summary class="facet-title">
+  <span>對象</span>
+  <span class="facet-right">
+    <span class="facet-count" data-count="audiences"></span>
+    <span class="facet-sub">可多選</span>
+  </span>
+</summary>
+    <div class="facet-body" id="facetAudiences">
+      <!-- JS 會自動塞選項 -->
+    </div>
+  </details>
+
+  <!-- 價格 -->
+  <details class="facet">
+    <summary class="facet-title">
+  <span>價格</span>
+  <span class="facet-right">
+    <span class="facet-count" data-count="prices"></span>
+    <span class="facet-sub">可多選</span>
+  </span>
+</summary>
+    <div class="facet-body" id="facetPrices">
+      <!-- JS 會自動塞選項 -->
+    </div>
+  </details>
+</div>
+    </div>
+
+    <div class="content">
+      <div class="toolbar">
+        <div>
+          <h3>商品列表</h3>
+          <p id="status">目前：全部</p>
+        </div>
+      </div>
+
+      <!-- ✅ 排序列 -->
+      <div class="sortbar" id="sortbar">
+        <button class="sortbtn is-active" data-sort="new">最新上架</button>
+        <button class="sortbtn" data-sort="hot">熱門關注</button>
+        <button class="sortbtn" data-sort="best">賣得最好</button>
+        <button class="sortbtn" data-sort="low">價格最低</button>
+        <button class="sortbtn" data-sort="high">價格最高</button>
+        <button class="sortbtn sort-sale" data-filter-sale>只看特價</button>
+      </div>
+
+      <!-- 商品列表 -->
+      <div class="grid" id="grid">
+        <div class="grid-note">商品載入中…</div>
+      </div>
+      <!-- ✅ 分頁 -->
+      <div class="pager" id="pager"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ===== Cart Drawer ===== -->
+<div class="drawer-mask hidden" id="mask"></div>
+<aside aria-label="購物車內容" class="drawer hidden" id="drawer">
+  <div class="drawer-head">
+    <h3>購物車</h3>
+    <button class="drawer-close" id="closeCart">關閉</button>
+  </div>
+  <div class="drawer-body" id="cartList"></div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <div>總計</div>
+      <div id="totalPrice">NT$0</div>
+    </div>
+    <button class="checkout" id="checkoutBtn">結帳（示範）</button>
+  </div>
+</aside>
+
+<!-- ===================== 搜尋視窗（與 index 共用） ===================== -->
+<div class="search-modal" id="searchModal" aria-hidden="true">
+  <div class="search-panel" role="dialog" aria-modal="true">
+
+    <div class="search-head">
+      <div class="search-head-title">搜尋</div>
+      <button class="search-close" id="closeSearch" aria-label="關閉">✕</button>
+    </div>
+
+    <div class="search-top">
+      <select class="search-select" id="searchType">
+        <option value="all">全部</option>
+        <option value="product">商品</option>
+        <option value="brand">品牌</option>
+        <option value="tag">關鍵字</option>
+      </select>
+
+      <input class="search-input" id="searchInput" type="text" placeholder="想找什麼呢？" />
+      <button class="search-btn" id="searchBtn">搜尋</button>
+    </div>
+
+    <div class="search-body">
+      <div class="search-results" id="searchResults">
+        <div class="search-empty">請輸入關鍵字開始搜尋</div>
+      </div>
+    </div>
+
+    <div class="search-hot">
+      <div class="hot-title">大家最愛搜</div>
+      <div class="hot-tags" id="hotTags">
+        <button class="hot-tag" data-q="益生菌">益生菌</button>
+        <button class="hot-tag" data-q="葉黃素">葉黃素</button>
+        <button class="hot-tag" data-q="Q10">Q10</button>
+        <button class="hot-tag" data-q="B群">B群</button>
+        <button class="hot-tag" data-q="魚油">魚油</button>
+        <button class="hot-tag" data-q="鈣鎂">鈣鎂</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== 商品內容 Modal（完整版） ===================== -->
+<div class="pmodal" id="productModal" aria-hidden="true">
+  <div class="pmodal__backdrop" data-close></div>
+
+  <div class="pmodal__panel" role="dialog" aria-modal="true" aria-labelledby="pmodalTitle" tabindex="-1">
+    <button class="pmodal__close" type="button" aria-label="關閉" data-close>✕</button>
+
+    <div class="pmodal__grid">
+      <!-- 左：縮圖列 + 主圖 -->
+      <div class="pmodal__media">
+        <div class="pthumbs" id="pmodalThumbs" aria-label="商品縮圖"></div>
+
+        <div class="pmain">
+          <div class="pmain__badges" id="pmodalBadges"></div>
+          <img id="pmodalImg" alt="" />
+        </div>
+      </div>
+
+      <!-- 右：資訊 -->
+      <div class="pmodal__info">
+        <div class="pmodal__meta">
+          <div class="pmodal__brand" id="pmodalBrand"></div>
+          <div class="pmodal__tags" id="pmodalTags"></div>
+        </div>
+
+        <h2 class="pmodal__title" id="pmodalTitle"></h2>
+
+        <div class="pmodal__price" id="pmodalPrice"></div>
+
+        <!-- ✅ 活動標籤（可有可無） -->
+        <div class="ppromos" id="pmodalPromos" style="display:none;"></div>
+
+        <div class="pmodal__desc" id="pmodalDesc"></div>
+
+        <!-- ✅ 容量/規格（可有可無） -->
+        <div class="pvariant" id="pmodalVariants" style="display:none;">
+          <div class="pvariant__title">容量 / 規格</div>
+          <div class="pvariant__options" id="pmodalVariantOptions"></div>
+        </div>
+
+        <div class="pmodal__actions">
+          <label class="pmodal__qty">
+            數量
+            <input id="pmodalQty" type="number" min="1" value="1" />
+          </label>
+
+          <button class="pmodal__add add-cart-btn" type="button" id="pmodalAddBtn" data-add="">
+            <i class="fa-solid fa-cart-plus" style="margin-right:6px;"></i>加入購物車
+          </button>
+        </div>
+
+        <!-- ✅ 庫存提示 -->
+        <div class="pstock" id="pmodalStock"></div>
+
+        <div class="pmodal__note" id="pmodalNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+/* ✅ 桌機 mega / 手機點擊展開 */
+(() => {
+  const item = document.querySelectorAll('.has-mega');
+  const mq = window.matchMedia('(max-width: 900px)');
+  item.forEach(it => {
+    const link = it.querySelector('a.nav-link');
+    if(!link) return;
+    link.addEventListener('click', (e) => {
+      if(mq.matches){
+        e.preventDefault();
+        it.classList.toggle('is-open');
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+/* ✅ 手機點選任一連結後：關閉漢堡選單 */
+(() => {
+  const navToggle = document.getElementById('nav-toggle');
+  if(!navToggle) return;
+  document.querySelectorAll('.nav-list a').forEach(a => {
+    a.addEventListener('click', () => { navToggle.checked = false; });
+  });
+})();
+</script>
+
+<script>
+/* ✅ 展開更多：鎖住背景捲動（避免底下頁面滑動） */
+(() => {
+  const toggle = document.getElementById('more-toggle');
+  if(!toggle) return;
+
+  let savedY = 0;
+
+  const lockScroll = () => {
+    savedY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.classList.add('is-more-open');
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${savedY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  };
+
+  const unlockScroll = () => {
+    document.body.classList.remove('is-more-open');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, savedY);
+  };
+
+  const sync = () => {
+    if(toggle.checked) lockScroll();
+    else unlockScroll();
+  };
+
+  toggle.addEventListener('change', sync);
+  sync();
+})();
+</script>
+
+<script>
+/* ✅ 展開更多：全部展開 / 全部收合 */
+(() => {
+  const overlay = document.querySelector('.more-overlay');
+  const toggle  = document.getElementById('more-toggle');
+  if(!overlay || !toggle) return;
+
+  const btnOpenAll  = document.getElementById('moreExpandAll');
+  const btnCloseAll = document.getElementById('moreCollapseAll');
+
+  const getAccords = () => Array.from(overlay.querySelectorAll('details.more-acc'));
+
+  const openAll = () => getAccords().forEach(d => d.open = true);
+  const closeAll = () => getAccords().forEach(d => d.open = false);
+
+  if(btnOpenAll)  btnOpenAll.addEventListener('click', openAll);
+  if(btnCloseAll) btnCloseAll.addEventListener('click', closeAll);
+
+  toggle.addEventListener('change', () => {
+    if(toggle.checked){
+      closeAll();
+      const body = overlay.querySelector('.more-body');
+      if(body) body.scrollTop = 0;
+    }
+  });
+})();
+</script>
+
+<script src="products_api.js"></script>
+<script src="nav_mega_dynamic.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const grid   = document.getElementById('grid');
+  const kw     = document.getElementById('kw');
+  const status = document.getElementById('status');
+  const sortbar = document.getElementById('sortbar');
+  const pager = document.getElementById('pager');
+
+  if (!grid || !kw || !status || !sortbar || !pager) {
+    console.error('❌ 缺少必要元素：#grid #kw #status #sortbar #pager');
+    return;
+  }
+
+  // ✅ 判斷是否為 F5 / Reload
+  const nav = performance.getEntriesByType('navigation')[0];
+  const isReload = !!(nav && nav.type === 'reload');
+
+  // ===== 狀態 =====
+  let allProducts = [];
+  let currentSort = 'new';
+  let currentType = 'all';
+  let currentKw   = '';
+  let currentSection = 'all';
+  let onlySale = false;
+
+  const PAGE_SIZE = 18;
+  let currentPage = 1;
+
+  // ===== 小工具 =====
+  const norm = (s) => (s ?? '').toString().toLowerCase().trim();
+  const toTime = (d) => {
+    const t = new Date(d).getTime();
+    return Number.isFinite(t) ? t : 0;
+  };
+
+  // =========================
+  // ✅ 四大分類篩選（種類/品牌/對象/價格）
+  // =========================
+  const filtersEl = document.getElementById('filters');
+  const hintEl = document.getElementById('filterHint');
+  const clearBtn = document.getElementById('clearFilters');
+  const selectedTagsEl = document.getElementById('selectedTags');
+  const facetTypes = document.getElementById('facetTypes');
+  const facetBrands = document.getElementById('facetBrands');
+  const facetAudiences = document.getElementById('facetAudiences');
+  const facetPrices = document.getElementById('facetPrices');
+
+  const TYPE_DICT = {
+    food:  { value:'food',  label:'食品',  en:'Food' },
+    c3:    { value:'c3',    label:'3C',    en:'Tech' },
+    cloth: { value:'cloth', label:'服飾',  en:'Fashion' },
+    home:  { value:'home',  label:'居家',  en:'Home' },
+  };
+
+  const AUD_DICT = {
+    pregnant: { value:'pregnant', label:'孕婦' },
+    kids:     { value:'kids',     label:'小孩' },
+    adult:    { value:'adult',    label:'成人' },
+    senior:   { value:'senior',   label:'樂齡' },
+  };
+  // ✅ 供 getOptionLabel / tag 顯示用（必須存在，否則 types/audiences 會 ReferenceError）
+let TYPE_OPTIONS = [];
+let AUDIENCE_OPTIONS = [];
+  // ✅ 從商品資料動態抓出「有哪些種類代碼」
+const buildTypeOptionsFromProducts = (list) => {
+  const s = new Set();
+  (list || []).forEach(p => {
+    const arr = Array.isArray(p.types) ? p.types : (p.type ? [p.type] : []);
+    arr.map(norm).filter(Boolean).forEach(t => s.add(t));
+  });
+
+  return Array.from(s)
+    .sort((a,b) => a.localeCompare(b, 'zh-Hant'))
+    .map(v => TYPE_DICT[v] || { value: v, label: v });
+};
+
+// ✅ 從商品資料動態抓出「有哪些對象代碼」
+const buildAudienceOptionsFromProducts = (list) => {
+  const s = new Set();
+  (list || []).forEach(p => {
+    const arr = Array.isArray(p.audiences) ? p.audiences : [];
+    arr.map(norm).filter(Boolean).forEach(a => s.add(a));
+  });
+
+  return Array.from(s)
+    .sort((a,b) => a.localeCompare(b, 'zh-Hant'))
+    .map(v => AUD_DICT[v] || { value: v, label: v });
+};
+
+  const PRICE_OPTIONS = [
+    { value: '0-99',     label: '$0–99',     min: 0,   max: 99 },
+    { value: '100-200',  label: '$100–200',  min: 100, max: 200 },
+    { value: '201-500',  label: '$201–500',  min: 201, max: 500 },
+    { value: '501-999',  label: '$501–999',  min: 501, max: 999 },
+    { value: '1000+',    label: '$1000+',    min: 1000, max: Infinity },
+  ];
+
+  // ✅ 篩選狀態（多選）
+  // types/audiences 用小寫存；brands 用原字串存；prices 用 value 原樣存
+  const selected = {
+    types: new Set(),
+    brands: new Set(),
+    audiences: new Set(),
+    prices: new Set(),
+  };
+
+  const renderFacetChips = (wrap, items, name) => {
+    if (!wrap) return;
+    wrap.innerHTML = items.map(it => `
+      <label class="fchip" data-chip data-name="${name}" data-value="${it.value}">
+        <input type="checkbox" data-name="${name}" value="${it.value}">
+        <span>${it.label}${it.en ? ` <small>${it.en}</small>` : ''}</span>
+      </label>
+    `).join('');
+  };
+
+  const buildBrandOptionsFromProducts = (list) => {
+    const s = new Set();
+    (list || []).forEach(p => {
+      const b = (p.brand || '').trim() || '其他';
+      s.add(b);
+    });
+    return Array.from(s).sort((a,b) => a.localeCompare(b, 'zh-Hant'));
+  };
+
+  const renderBrands = (brands) => {
+    if (!facetBrands) return;
+    facetBrands.innerHTML = brands.map(b => `
+      <label class="fchip" data-chip data-name="brands" data-value="${b}">
+        <input type="checkbox" data-name="brands" value="${b}">
+        <span>${b}</span>
+      </label>
+    `).join('');
+  };
+
+  const syncChipActive = () => {
+    document.querySelectorAll('[data-chip]').forEach(chip => {
+      const name = chip.dataset.name;
+      const value = chip.dataset.value;
+
+      let on = false;
+      if (name === 'types' || name === 'audiences') {
+        on = selected[name].has(String(value).toLowerCase());
+      } else {
+        on = selected[name].has(value);
+      }
+
+      chip.classList.toggle('is-active', !!on);
+
+      const input = chip.querySelector('input[type="checkbox"]');
+      if (input) input.checked = !!on;
+    });
+  };
+
+  const updateHint = () => {
+    const parts = [];
+    if (selected.types.size) parts.push(`種類：${[...selected.types].join('、')}`);
+    if (selected.brands.size) parts.push(`品牌：${[...selected.brands].join('、')}`);
+    if (selected.audiences.size) parts.push(`對象：${[...selected.audiences].join('、')}`);
+    if (selected.prices.size) parts.push(`價格：${[...selected.prices].join('、')}`);
+
+    hintEl.textContent = parts.length ? parts.join(' / ') : '未套用分類篩選';
+  };
+
+  const getOptionLabel = (group, value) => {
+    if (group === 'brands') return value;
+
+    const findIn = (arr) => (arr || []).find(x => String(x.value) === String(value));
+    if (group === 'types') {
+      const o = findIn(TYPE_OPTIONS);
+      return o ? `${o.label}${o.en ? ` ${o.en}` : ''}` : value;
+    }
+    if (group === 'audiences') {
+      const o = findIn(AUDIENCE_OPTIONS);
+      return o ? o.label : value;
+    }
+    if (group === 'prices') {
+      const o = findIn(PRICE_OPTIONS);
+      return o ? o.label : value;
+    }
+    return value;
+  };
+
+  const groupNameZh = (group) => ({
+    types: '種類',
+    brands: '品牌',
+    audiences: '對象',
+    prices: '價格'
+  }[group] || group);
+
+  const updateCounts = () => {
+    document.querySelectorAll('.facet-count[data-count]').forEach(el => {
+      const key = el.dataset.count;
+      const n = selected?.[key]?.size || 0;
+      if (n > 0) {
+        el.style.display = 'inline-flex';
+        el.textContent = `已選 ${n}`;
+      } else {
+        el.style.display = 'none';
+        el.textContent = '';
+      }
+    });
+  };
+
+  const renderSelectedTags = () => {
+    if (!selectedTagsEl) return;
+
+    const groups = ['types', 'brands', 'audiences', 'prices'];
+    const tags = [];
+
+    groups.forEach(g => {
+      const set = selected[g];
+      if (!set || !set.size) return;
+
+      [...set].forEach(val => {
+        tags.push({
+          group: g,
+          value: val,
+          label: getOptionLabel(g, val),
+          groupZh: groupNameZh(g),
+        });
+      });
+    });
+
+    if (!tags.length) {
+      selectedTagsEl.innerHTML = '';
+      return;
+    }
+
+    selectedTagsEl.innerHTML = tags.map(t => `
+      <div class="stag" data-tag data-name="${t.group}" data-value="${t.value}">
+        <span class="k">${t.groupZh}</span>
+        <span class="v">${t.label}</span>
+        <button type="button" class="x" aria-label="移除">✕</button>
+      </div>
+    `).join('');
+  };
+
+  const updateAllFacetsUI = () => {
+    syncChipActive();
+    updateHint();
+    updateCounts();
+    renderSelectedTags();
+  };
+
+  const playRipple = (chip, ev) => {
+    if (!chip) return;
+
+    chip.classList.add('is-press');
+    setTimeout(() => chip.classList.remove('is-press'), 120);
+
+    const old = chip.querySelector('.ripple');
+    if (old) old.remove();
+
+    const r = document.createElement('span');
+    r.className = 'ripple';
+
+    const rect = chip.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    r.style.width = r.style.height = size + 'px';
+
+    const x = (ev?.clientX ?? (rect.left + rect.width / 2)) - rect.left - size / 2;
+    const y = (ev?.clientY ?? (rect.top + rect.height / 2)) - rect.top - size / 2;
+    r.style.left = x + 'px';
+    r.style.top = y + 'px';
+
+    chip.appendChild(r);
+    r.addEventListener('animationend', () => r.remove(), { once: true });
+  };
+
+  const clearAllFilters = () => {
+    selected.types.clear();
+    selected.brands.clear();
+    selected.audiences.clear();
+    selected.prices.clear();
+
+    updateAllFacetsUI();
+    currentPage = 1;
+    render();
+  };
+
+  clearBtn?.addEventListener('click', clearAllFilters);
+
+  // ✅ 點選 chip（整格都可點）
+  filtersEl?.addEventListener('click', (e) => {
+    const chip = e.target.closest('[data-chip]');
+    if (!chip) return;
+
+    e.preventDefault();
+    playRipple(chip, e);
+
+    const name = chip.dataset.name;
+    const value = chip.dataset.value;
+    if (!name) return;
+
+    const set = selected[name];
+    if (!set) return;
+
+    // ✅ types/audiences 小寫存；brands 原樣；prices 原樣
+    const v = (name === 'types' || name === 'audiences')
+      ? String(value).toLowerCase()
+      : String(value);
+
+    if (set.has(v)) set.delete(v);
+    else set.add(v);
+
+    updateAllFacetsUI();
+    currentPage = 1;
+    render();
+  });
+
+  // ✅ 點選上方 tag 的 ✕ 移除
+  selectedTagsEl?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.x');
+    if (!btn) return;
+
+    const tag = e.target.closest('[data-tag]');
+    if (!tag) return;
+
+    const name = tag.dataset.name;
+    const value = tag.dataset.value;
+
+    const set = selected[name];
+    if (!set) return;
+
+    set.delete(value);
+
+    updateAllFacetsUI();
+    currentPage = 1;
+    render();
+  });
+
+  // ===== 篩選比對 =====
+  const matchTypesMulti = (p) => {
+    if (!selected.types.size) return true;
+    const types = Array.isArray(p.types) ? p.types : (p.type ? [p.type] : []);
+    return types.map(norm).some(t => selected.types.has(t));
+  };
+
+  const matchBrandsMulti = (p) => {
+    if (!selected.brands.size) return true;
+    const b = (p.brand || '').trim() || '其他';
+    return selected.brands.has(b);
+  };
+
+  const matchAudiencesMulti = (p) => {
+    if (!selected.audiences.size) return true;
+    const aud = Array.isArray(p.audiences) ? p.audiences : [];
+    const audNorm = aud.map(norm);
+    return audNorm.some(a => selected.audiences.has(a));
+  };
+  const effectivePrice = (p) => {
+  const base = (p.originalPrice ?? p.price);
+  const sale = p.salePrice;
+
+  // 1) 最外層有 sale / price
+  if (sale != null && base != null && Number(sale) < Number(base)) return Number(sale);
+  if (base != null) return Number(base);
+
+  // 2) 沒有最外層價格 → 用 variants 最低價
+  const vs = Array.isArray(p.variants) ? p.variants : [];
+  const prices = vs
+    .map(v => v?.salePrice ?? v?.originalPrice ?? v?.price)
+    .map(Number)
+    .filter(n => Number.isFinite(n));
+
+  if (prices.length) return Math.min(...prices);
+
+  return Infinity;
+  };
+  const isOnSale = (p) => {
+  const baseTop = (p.originalPrice ?? p.price);
+  const saleTop = p.salePrice;
+
+  // 商品本身特價
+  if (saleTop != null && baseTop != null && Number(saleTop) < Number(baseTop)) {
+    return true;
+  }
+
+  // 任一規格特價
+  const vs = Array.isArray(p.variants) ? p.variants : [];
+  return vs.some(v => {
+    const base = (v?.originalPrice ?? v?.price);
+    const sale = v?.salePrice;
+    return sale != null && base != null && Number(sale) < Number(base);
+  });
+};
+
+  const matchPricesMulti = (p) => {
+    if (!selected.prices.size) return true;
+
+    const price = effectivePrice(p);
+    return PRICE_OPTIONS
+      .filter(r => selected.prices.has(r.value))
+      .some(r => price >= r.min && price <= r.max);
+  };
+
+  const matchKw = (p, kwText) => {
+    if (!kwText) return true;
+    const k = norm(kwText);
+
+    const hay = [
+      p.name,
+      p.desc,
+      (p.tags || []).join(' '),
+      p.brand
+    ].map(norm).join(' ');
+
+    return hay.includes(k);
+  };
+
+  const matchSection = (p, section) => {
+    if (section === 'all') return true;
+    return p.section === section;
+  };
+
+  const applyQueryFromURL = () => {
+    const sp = new URLSearchParams(location.search);
+    const q = (sp.get('kw') || sp.get('q') || '').trim();
+
+    if (q) {
+      kw.value = q;
+      currentKw = q;
+      currentPage = 1;
+    }
+  };
+
+  // ✅ 非 reload 才套用網址搜尋；F5 就清參數
+  if (!isReload) {
+    applyQueryFromURL();
+  } else {
+    history.replaceState(null, '', location.pathname);
+  }
+
+  const sortList = (list, key) => {
+    const arr = [...list];
+    switch (key) {
+      case 'new':  return arr.sort((a,b) => toTime(b.createdAt) - toTime(a.createdAt));
+      case 'hot':  return arr.sort((a,b) => (b.views||0) - (a.views||0));
+      case 'best': return arr.sort((a,b) => (b.sales||0) - (a.sales||0));
+      case 'low':  return arr.sort((a,b) => effectivePrice(a) - effectivePrice(b));
+      case 'high': return arr.sort((a,b) => effectivePrice(b) - effectivePrice(a));
+      default:     return arr;
+    }
+  };
+
+  const fmt = (n) => n == null ? '' : '$' + Number(n).toLocaleString('zh-Hant-TW');
+
+  // ===== ✅ 先宣告 render，再綁事件/ fetch（避免 hoist 問題）=====
+  const render = () => {
+    const filtered = allProducts
+      .filter(p => matchSection(p, currentSection))
+      .filter(p => matchTypesMulti(p))
+      .filter(p => matchBrandsMulti(p))
+      .filter(p => matchAudiencesMulti(p))
+      .filter(p => matchPricesMulti(p))
+      .filter(p => matchKw(p, currentKw))
+      .filter(p => !onlySale || isOnSale(p));
+
+    const sorted = sortList(filtered, currentSort);
+
+    const total = sorted.length;
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    currentPage = Math.min(currentPage, totalPages);
+
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+    const pageItems = sorted.slice(start, end);
+
+    status.textContent = `目前：${total} 件 / 第 ${currentPage} 頁，共 ${totalPages} 頁`;
+
+    if (!total) {
+      grid.innerHTML = `<div class="grid-note">沒有符合條件的商品</div>`;
+      pager.innerHTML = '';
+      return;
+    }
+    grid.innerHTML = pageItems.map(p => {
+  const vs = Array.isArray(p.variants) ? p.variants : [];
+
+  const baseTop = (p.originalPrice ?? p.price);
+  const saleTop = p.salePrice;
+
+  const hasSale =
+  // 1) 最外層特價
+  (saleTop != null && baseTop != null && Number(saleTop) < Number(baseTop))
+  // 2) 或 variants 任一規格有特價
+  || vs.some(v => {
+       const base = v?.originalPrice ?? v?.price;
+       const sale = v?.salePrice;
+       return (sale != null && base != null && Number(sale) < Number(base));
+     });
+
+  let priceHtml = '';
+
+  if (baseTop != null) {
+    const original = baseTop;
+    const sale = saleTop;
+
+    priceHtml = hasSale
+      ? `<div class="pprice pprice-sale">
+           <span class="sale">${fmt(sale)}</span>
+           <span class="orig">${fmt(original)}</span>
+         </div>`
+      : `<div class="pprice pprice-normal">${fmt(original)}</div>`;
+  } else if (vs.length) {
+  const baseList = vs
+    .map(v => v?.originalPrice ?? v?.price)
+    .map(Number)
+    .filter(n => Number.isFinite(n));
+
+  const saleList = vs
+    .map(v => v?.salePrice)
+    .map(Number)
+    .filter(n => Number.isFinite(n));
+
+  const hasAnySale = vs.some(v => {
+    const base = v?.originalPrice ?? v?.price;
+    const sale = v?.salePrice;
+    return sale != null && base != null && Number(sale) < Number(base);
+  });
+
+  const minBase = baseList.length ? Math.min(...baseList) : null;
+  const maxBase = baseList.length ? Math.max(...baseList) : null;
+
+  // ✅ 特價用「有 sale 就用 sale，沒 sale 就用 base」去算實付區間
+  const payList = vs
+    .map(v => {
+      const base = v?.originalPrice ?? v?.price;
+      const sale = v?.salePrice;
+      const pay = (sale != null && base != null && Number(sale) < Number(base)) ? sale : base;
+      return Number(pay);
+    })
+    .filter(n => Number.isFinite(n));
+
+  const minPay = payList.length ? Math.min(...payList) : null;
+  const maxPay = payList.length ? Math.max(...payList) : null;
+
+  const payText =
+    (minPay != null && maxPay != null)
+      ? (minPay === maxPay ? fmt(minPay) : `${fmt(minPay)} – ${fmt(maxPay)}`)
+      : '價格未提供';
+
+  if (hasAnySale && minBase != null && maxBase != null) {
+    const baseText = (minBase === maxBase) ? fmt(minBase) : `${fmt(minBase)} – ${fmt(maxBase)}`;
+    priceHtml = `
+      <div class="pprice pprice-sale">
+        <span class="sale">${payText}</span>
+        <span class="orig">${baseText}</span>
+      </div>
+    `;
+  } else {
+    priceHtml = `<div class="pprice pprice-normal">${payText}</div>`;
+  }
+}
+
+  return `
+    <div class="card" data-id="${p.id}">
+      <div class="thumb">
+        ${hasSale ? `<span class="sale-badge">特價</span>` : ``}
+        <img src="${p.image}" alt="${p.name}">
+      </div>
+
+      <h4 class="name">${p.name}</h4>
+      <p class="desc">${p.desc || ''}</p>
+
+      <div class="card-bottom">
+        ${priceHtml}
+        <button class="btn-add add-cart-btn" type="button" data-add="${p.id}">
+          <i class="fa-solid fa-cart-plus" style="margin-right:6px;"></i>加入購物車
+        </button>
+      </div>
+    </div>
+  `;
+}).join('');
+
+
+
+
+    const makeBtn = (label, page, disabled = false, active = false) =>
+      `<button class="pbtn ${active ? 'is-active' : ''}" data-page="${page}" ${disabled ? 'disabled' : ''}>${label}</button>`;
+
+    let html = '';
+    html += makeBtn('‹ 上一頁', currentPage - 1, currentPage === 1);
+
+    for (let p = 1; p <= totalPages; p++) {
+      html += makeBtn(String(p), p, false, p === currentPage);
+    }
+
+    html += makeBtn('下一頁 ›', currentPage + 1, currentPage === totalPages);
+    pager.innerHTML = html;
+  };
+
+  // ===== 事件：關鍵字 =====
+  kw.addEventListener('input', () => {
+    currentKw = kw.value;
+    currentPage = 1;
+    render();
+  });
+
+  // ===== 事件：分頁 =====
+  pager.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pbtn');
+    if (!btn) return;
+
+    const p = Number(btn.dataset.page);
+    if (!Number.isFinite(p)) return;
+
+    currentPage = p;
+    render();
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ===== 事件：排序 =====
+  sortbar.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-sort]');
+    if (!btn) return;
+
+    currentSort = btn.dataset.sort;
+    currentPage = 1;
+
+    sortbar.querySelectorAll('.sortbtn').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+
+    render();
+  });
+
+  // ===== 事件：只看特價 =====
+  const saleBtn = sortbar.querySelector('[data-filter-sale]');
+  if (saleBtn) {
+    saleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      onlySale = !onlySale;
+      currentPage = 1;
+      saleBtn.classList.toggle('is-active', onlySale);
+      render();
+    });
+  }
+
+  // ===== 讀 products API（取代 products.json）=====
+  window.ProductAPI.getProducts({ force: true })
+  .then(data => {
+    console.log("✅ API items length =", Array.isArray(data) ? data.length : data);
+    allProducts = Array.isArray(data) ? data : [];
+    console.log('✅ products API loaded:', allProducts.length);
+
+    const typeOptions = buildTypeOptionsFromProducts(allProducts);
+    const audOptions  = buildAudienceOptionsFromProducts(allProducts);
+
+    TYPE_OPTIONS = typeOptions;
+    AUDIENCE_OPTIONS = audOptions;
+
+    renderFacetChips(facetTypes, typeOptions, 'types');
+    renderFacetChips(facetAudiences, audOptions, 'audiences');
+    renderFacetChips(facetPrices, PRICE_OPTIONS, 'prices'); // 價格通常固定就好
+    renderBrands(buildBrandOptionsFromProducts(allProducts));
+
+    // ✅ F5 / Reload：清空搜尋 & 清空篩選 & 清掉只看特價（此時資料已載入，UI 安全）
+    if (isReload) {
+      kw.value = '';
+      currentKw = '';
+
+      selected.types.clear();
+      selected.brands.clear();
+      selected.audiences.clear();
+      selected.prices.clear();
+
+      onlySale = false;
+      sortbar.querySelector('[data-filter-sale]')?.classList.remove('is-active');
+
+      currentPage = 1;
+
+      // ✅ 清掉網址參數
+      history.replaceState(null, '', location.pathname);
+    }
+
+    // ✅ 給 modal / 其他 script 用
+    window.__ALL_PRODUCTS__ = allProducts;
+
+    updateAllFacetsUI();
+    render();
+  })
+  .catch(err => {
+    console.error('❌ products API 讀取失敗:', err);
+    grid.innerHTML = `<div class="grid-note">商品 API 讀取失敗：${err.message}</div>`;
+    pager.innerHTML = '';
+  });
+});
+</script>
+
+<script>
+(() => {
+  const grid  = document.getElementById('grid');
+  const modal = document.getElementById('productModal');
+  if (!grid || !modal) return;
+
+  const panel = modal.querySelector('.pmodal__panel');
+
+  const $img    = document.getElementById('pmodalImg');
+  const $thumbs = document.getElementById('pmodalThumbs');
+  const $badges = document.getElementById('pmodalBadges');
+
+  const $brand  = document.getElementById('pmodalBrand');
+  const $tags   = document.getElementById('pmodalTags');
+  const $title  = document.getElementById('pmodalTitle');
+  const $price  = document.getElementById('pmodalPrice');
+  const $desc   = document.getElementById('pmodalDesc');
+
+  const $promosWrap = document.getElementById('pmodalPromos');
+
+  const $variantsWrap = document.getElementById('pmodalVariants');
+  const $variantOps   = document.getElementById('pmodalVariantOptions');
+
+  const $qty   = document.getElementById('pmodalQty');
+  const $add   = document.getElementById('pmodalAddBtn');
+  const $stock = document.getElementById('pmodalStock');
+  const $note  = document.getElementById('pmodalNote');
+
+  const getAll = () => window.__ALL_PRODUCTS__ || [];
+
+  const fmt = (n) => 'NT$' + Number(n).toLocaleString('zh-Hant-TW');
+
+  // ===== 價格（支援 sale/original 或 variant）=====
+  const basePriceOf = (p) => (p.originalPrice ?? p.price ?? 0);
+  const salePriceOf = (p) => (p.salePrice ?? null);
+
+  const hasSaleOf = (p, base, sale) => {
+    const b = Number(base);
+    const s = sale == null ? null : Number(sale);
+    return (s != null && Number.isFinite(s) && Number.isFinite(b) && s < b);
+  };
+
+  // ===== 變體結構（你可以用 variants：[{label:'40ml', price:70, salePrice:65, stock: 12, image:'', images:[]}, ...]）=====
+  const getVariants = (p) => Array.isArray(p.variants) ? p.variants : [];
+
+  // ===== 圖片陣列（優先 variant.images -> p.images -> 單張 p.image）=====
+  const getImages = (p, chosenVariant) => {
+    const vImgs = chosenVariant?.images;
+    if (Array.isArray(vImgs) && vImgs.length) return vImgs;
+
+    const pImgs = p.images;
+    if (Array.isArray(pImgs) && pImgs.length) return pImgs;
+
+    if (p.image) return [p.image];
+    return [];
+  };
+
+  // ===== 活動標籤（promos: ['限時8折','買1送1']）=====
+  const getPromos = (p) => Array.isArray(p.promos) ? p.promos : [];
+
+  // ===== 角標 badge（badges: ['特價','熱賣']）；若有 sale 也會自動加「特價」=====
+  const getBadges = (p, hasSale, chosenVariant) => {
+    const a = new Set();
+    (Array.isArray(p.badges) ? p.badges : []).forEach(x => x && a.add(String(x)));
+
+    (Array.isArray(chosenVariant?.badges) ? chosenVariant.badges : []).forEach(x => x && a.add(String(x)));
+
+    if (hasSale) a.add('特價');
+    return [...a];
+  };
+
+  // ===== 庫存（支援 p.stock 或 variant.stock；沒填就不顯示）=====
+  const getStock = (p, chosenVariant) => {
+    const v = chosenVariant?.stock;
+    if (v === 0) return 0;
+    if (Number.isFinite(Number(v))) return Number(v);
+
+    const s = p.stock;
+    if (s === 0) return 0;
+    if (Number.isFinite(Number(s))) return Number(s);
+
+    return null; // 未提供庫存
+  };
+
+  const openModal = () => {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('is-pmodal-open');
+    requestAnimationFrame(() => panel?.focus?.());
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('is-pmodal-open');
+
+    const sp = new URLSearchParams(location.search);
+    if (sp.has('pid')) {
+      sp.delete('pid');
+      const qs = sp.toString();
+      history.replaceState(null, '', qs ? `${location.pathname}?${qs}` : location.pathname);
+    }
+  };
+
+  // ===== UI：縮圖 =====
+  const renderThumbs = (imgs, activeIdx = 0) => {
+    if (!$thumbs) return;
+    if (!imgs || !imgs.length) {
+      $thumbs.innerHTML = '';
+      $thumbs.style.display = 'none';
+      return;
+    }
+    $thumbs.style.display = '';
+    $thumbs.innerHTML = imgs.map((src, i) => `
+      <button class="pthumb ${i === activeIdx ? 'is-active' : ''}" type="button" data-i="${i}" aria-label="切換圖片 ${i+1}">
+        <img src="${src}" alt="">
+      </button>
+    `).join('');
+  };
+
+  const setMainImage = (imgs, idx) => {
+    const safe = Math.max(0, Math.min(idx, (imgs?.length || 1) - 1));
+    const src = imgs?.[safe] || '';
+    $img.src = src;
+    // 同步 active
+    $thumbs?.querySelectorAll('.pthumb').forEach(btn => {
+      btn.classList.toggle('is-active', Number(btn.dataset.i) === safe);
+    });
+  };
+
+  // ===== UI：promos / badges / stock =====
+  const renderPromos = (promos) => {
+    if (!$promosWrap) return;
+    if (!promos.length) {
+      $promosWrap.style.display = 'none';
+      $promosWrap.innerHTML = '';
+      return;
+    }
+    $promosWrap.style.display = '';
+    $promosWrap.innerHTML = promos.map(t => `<span class="ppromo">${t}</span>`).join('');
+  };
+
+  const renderBadges = (badges) => {
+    if (!$badges) return;
+    if (!badges.length) {
+      $badges.innerHTML = '';
+      return;
+    }
+    $badges.innerHTML = badges.map(b => `<span class="pbadge">${b}</span>`).join('');
+  };
+
+  const renderStock = (stock) => {
+    // stock: null 表示不顯示
+    if (stock == null) {
+      $stock.textContent = '';
+      $stock.classList.remove('is-low', 'is-out');
+      return;
+    }
+    if (stock <= 0) {
+      $stock.textContent = '缺貨中';
+      $stock.classList.add('is-out');
+      $stock.classList.remove('is-low');
+    } else if (stock <= 5) {
+      $stock.textContent = `庫存緊張：剩 ${stock} 件`;
+      $stock.classList.add('is-low');
+      $stock.classList.remove('is-out');
+    } else {
+      $stock.textContent = `庫存：${stock} 件`;
+      $stock.classList.remove('is-low', 'is-out');
+    }
+  };
+
+  const setAddEnabled = (enabled) => {
+    $add.disabled = !enabled;
+    $add.classList.toggle('is-disabled', !enabled);
+  };
+
+  // ===== UI：variant =====
+  const renderVariants = (p, variants, selectedIndex) => {
+    if (!$variantsWrap || !$variantOps) return;
+
+    if (!variants.length) {
+      $variantsWrap.style.display = 'none';
+      $variantOps.innerHTML = '';
+      return;
+    }
+
+    $variantsWrap.style.display = '';
+    $variantOps.innerHTML = variants.map((v, i) => {
+      const label = v.label || v.name || `規格${i+1}`;
+      return `
+        <label class="popt">
+          <input type="radio" name="pvariant" value="${i}" ${i === selectedIndex ? 'checked' : ''}>
+          <span>${label}</span>
+        </label>
+      `;
+    }).join('');
+  };
+
+  // ===== 核心：把商品塞進 modal =====
+  let currentProduct = null;
+  let currentVariantIndex = 0;
+  let currentImages = [];
+  let currentImageIndex = 0;
+
+  const updatePriceAndStock = () => {
+    const p = currentProduct;
+    if (!p) return;
+
+    const variants = getVariants(p);
+    const v = variants.length ? variants[currentVariantIndex] : null;
+
+    // 取價（variant 優先）
+    const base = (v?.originalPrice ?? v?.price ?? basePriceOf(p));
+    const sale = (v?.salePrice ?? salePriceOf(p));
+
+    const hasSale = hasSaleOf(p, base, sale);
+
+    $price.innerHTML = hasSale
+      ? `<span class="pprice-sale">${fmt(sale)}</span><span class="pprice-orig">${fmt(base)}</span>`
+      : `<span class="pprice-normal">${fmt(base)}</span>`;
+
+    // badges
+    renderBadges(getBadges(p, hasSale, v));
+
+    // stock + add btn
+    const stock = getStock(p, v);
+    renderStock(stock);
+
+    if (stock != null && stock <= 0) {
+      setAddEnabled(false);
+      $note.textContent = '此商品目前缺貨，請稍後再試';
+    } else {
+      setAddEnabled(true);
+      $note.textContent = '';
+    }
+
+    // 把 variant 資訊塞到按鈕 dataset（給你 cart_store.js 若未來要用）
+    $add.dataset.add = p.id;
+    $add.dataset.variant = variants.length ? String(currentVariantIndex) : '';
+    $add.dataset.vlabel = variants.length ? String(v?.label || v?.name || '') : '';
+  };
+
+  const updateImages = () => {
+    const p = currentProduct;
+    if (!p) return;
+
+    const variants = getVariants(p);
+    const v = variants.length ? variants[currentVariantIndex] : null;
+
+    currentImages = getImages(p, v);
+    currentImageIndex = 0;
+
+    renderThumbs(currentImages, currentImageIndex);
+    setMainImage(currentImages, currentImageIndex);
+  };
+
+  const fillModal = (p) => {
+    currentProduct = p;
+    currentVariantIndex = 0;
+
+    $title.textContent = p.name || '';
+    $desc.textContent = p.desc || '（此商品尚未填寫介紹）';
+
+    const b = (p.brand || '').trim();
+    $brand.textContent = b ? b : '其他';
+
+    const tags = Array.isArray(p.tags) ? p.tags : [];
+    $tags.innerHTML = tags.map(t => `<span class="ptag">${t}</span>`).join('');
+
+    // promos
+    renderPromos(getPromos(p));
+
+    // variants
+    const variants = getVariants(p);
+    renderVariants(p, variants, currentVariantIndex);
+
+    // qty reset
+    $qty.value = 1;
+    $add.dataset.qty = '1';
+
+    // images + price + stock
+    updateImages();
+    updatePriceAndStock();
+  };
+
+  const openById = (id) => {
+    const p = getAll().find(x => x.id === id);
+    if (!p) return;
+
+    fillModal(p);
+    openModal();
+
+    const sp = new URLSearchParams(location.search);
+    sp.set('pid', id);
+    history.replaceState(null, '', `${location.pathname}?${sp.toString()}`);
+  };
+
+  // ===== 事件：點卡片開 modal =====
+  grid.addEventListener('click', (e) => {
+    if (e.target.closest('[data-add]')) return; // 點加入購物車不開 modal
+    const card = e.target.closest('.card[data-id]');
+    if (!card) return;
+    openById(card.dataset.id);
+  });
+
+  // ===== 事件：縮圖切換 =====
+  $thumbs?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pthumb');
+    if (!btn) return;
+    const i = Number(btn.dataset.i);
+    if (!Number.isFinite(i)) return;
+    setMainImage(currentImages, i);
+  });
+
+  // ===== 事件：variants 切換 =====
+  $variantOps?.addEventListener('change', (e) => {
+    const input = e.target.closest('input[type="radio"][name="pvariant"]');
+    if (!input) return;
+    const idx = Number(input.value);
+    if (!Number.isFinite(idx)) return;
+
+    currentVariantIndex = idx;
+    updateImages();
+    updatePriceAndStock();
+  });
+
+  // ===== 關閉 =====
+  modal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  // ===== qty 同步 =====
+  $qty.addEventListener('input', () => {
+    const n = Math.max(1, Number($qty.value || 1));
+    $qty.value = n;
+    $add.dataset.qty = String(n);
+  });
+
+  // ✅ 點加入購物車後關 modal（不影響你的 cart_store.js）
+  $add.addEventListener('click', () => closeModal());
+
+  // ===== 支援 ?pid=F001 直接開 =====
+  const sp = new URLSearchParams(location.search);
+  const pid = sp.get('pid');
+  if (pid) {
+    const timer = setInterval(() => {
+      if (getAll().length) {
+        clearInterval(timer);
+        openById(pid);
+      }
+    }, 60);
+    setTimeout(() => clearInterval(timer), 5000);
+  }
+})();
+</script>
+
+<script>
+(() => {
+  const body = document.body;
+  const megas = document.querySelectorAll('.has-mega');
+
+  let openCount = 0;
+
+  const openMega = () => {
+    openCount++;
+    body.classList.add('is-mega-open');
+  };
+
+  const closeMega = () => {
+    openCount = Math.max(0, openCount - 1);
+    if(openCount === 0){
+      body.classList.remove('is-mega-open');
+    }
+  };
+
+  megas.forEach(item => {
+    const mega = item.querySelector('.mega');
+    if(!mega) return;
+
+    item.addEventListener('mouseenter', openMega);
+    item.addEventListener('mouseleave', closeMega);
+
+    item.addEventListener('focusin', openMega);
+    item.addEventListener('focusout', closeMega);
+  });
+})();
+</script>
+<script>
+/* ✅ cart.html 搜尋視窗修復：把 modal 搜尋導到左側即時篩選 #kw */
+(() => {
+  const modal = document.getElementById('searchModal');
+  const openBtn = document.getElementById('openSearch');
+  const closeBtn = document.getElementById('closeSearch');
+
+  const input = document.getElementById('searchInput');
+  const typeSel = document.getElementById('searchType');
+  const btn = document.getElementById('searchBtn');
+  const hotWrap = document.getElementById('hotTags');
+
+  const kw = document.getElementById('kw'); // ✅ 你左側即時篩選 input
+
+  if (!modal || !openBtn || !closeBtn || !input || !btn || !kw) {
+    console.warn('search modal missing required elements');
+    return;
+  }
+
+  const open = () => {
+    modal.classList.add('is-open');
+    document.body.classList.add('is-search-open');
+    requestAnimationFrame(() => input.focus());
+  };
+
+  const close = () => {
+    modal.classList.remove('is-open');
+    document.body.classList.remove('is-search-open');
+  };
+
+  const doSearch = (q) => {
+    const query = (q ?? input.value ?? '').trim();
+    if (!query) return;
+
+    // ✅ 1) 導到左側即時篩選
+    kw.value = query;
+    kw.dispatchEvent(new Event('input', { bubbles: true })); // 觸發你原本的 render()
+
+    // ✅ 2) (可選) 把條件寫回網址，重整不會不見
+    const sp = new URLSearchParams(location.search);
+    sp.set('q', query);
+    sp.set('type', (typeSel?.value || 'all'));
+    history.replaceState(null, '', `${location.pathname}?${sp.toString()}`);
+
+    // ✅ 3) 關閉 modal
+    close();
+
+    // ✅ 4) 捲到商品區（可選）
+    document.getElementById('grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  // 開/關
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+
+  // 點搜尋
+  btn.addEventListener('click', () => doSearch());
+
+  // Enter 搜尋
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      doSearch();
+    }
+    if (e.key === 'Escape') close();
+  });
+
+  // 點熱門 tag
+  hotWrap?.addEventListener('click', (e) => {
+    const tag = e.target.closest('.hot-tag');
+    if (!tag) return;
+    doSearch(tag.dataset.q || tag.textContent);
+  });
+
+  // (可選) 打開 modal 時，把目前 kw 帶進去
+  openBtn.addEventListener('click', () => {
+    input.value = kw.value || '';
+  });
+})();
+</script>
+
+<script>
+(() => {
+  const moreToggle = document.getElementById('more-toggle');
+  if (!moreToggle) return;
+
+  const sync = () => {
+    document.body.classList.toggle('is-more-open', moreToggle.checked);
+  };
+
+  moreToggle.addEventListener('change', sync);
+  sync();
+})();
+</script>
+
+<script src="cart_store.js"></script>
+<script src="nav_more_full.js"></script>
+<script src="cart_page.js"></script>
+<script src="cart_deeplink.js"></script>
+
+</body>
+</html>

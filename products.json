@@ -1,0 +1,394 @@
+
+[
+  {
+    "id": "F001",
+    "name": "OMEGA-3德國高濃度 魚油軟膠囊 滴狀 B款",
+    "desc": "小顆好吸收，無魚腥味 rTG好吸收，清透純淨。",
+    "image": "photo/33_20250310154440_133075_7_20230613091757_51149_4716872204717_omega-3德國高濃度魚油軟膠囊_滴狀_b款_1.jpg",
+    "url": "#modal-product1",
+    "section": "featured",
+    "audiences": ["kids", "adult"],
+    "originalPrice": 100,
+    "salePrice": 95,
+    "brand": "源本補給室",
+    "types": ["food", "home"],
+    "tags": [
+      "魚油"
+    ],
+    "createdAt": "2026-01-05",
+    "views": 520,
+    "sales": 88
+  },
+  {
+    "id": "F002",
+    "name": "多C亞維他命C咀嚼錠",
+    "desc": "補充人體無法自行合成營養素 增進體內結締組織生長 有助於細胞排列緊密 具有抗氧化作用維持青春美麗",
+    "image": "photo/S__5455883_0.jpg",
+    "url": "#modal-product2",
+    "section": "featured",
+    "price": 200,
+    "brand": "",
+    "types": ["food"],
+    "tags": [
+      "維他命C"
+    ],
+    "createdAt": "2026-01-04",
+    "views": 100,
+    "sales": 10
+  },
+  {
+    "id": "F003",
+    "name": "易視利金盞花萃取物 葉黃素膠囊",
+    "desc": "金盞花萃取物 紅棗萃取物 黑豆皮萃取物",
+    "image": "photo/3_20230613082038_58386_4719893160017_易視利金盞花萃取物葉黃素膠囊_30粒_盒_1 (2).jpg",
+    "url": "#modal-product3",
+    "section": "featured",
+    "originalPrice": 300,
+    "salePrice": 290,
+    "brand": "",
+    "tags": [
+      "葉黃素"
+    ],
+    "createdAt": "2026-01-03",
+    "views": 100,
+    "sales": 20
+  },
+  {
+    "id": "F004",
+    "name": "美日輕",
+    "desc": "菊苣纖維 鳳梨酵素 木瓜酵素 嗜酸乳桿菌",
+    "image": "photo/2_20250115112142_126017_美日輕排便酵素(排裝) (1).jpg",
+    "url": "#modal-product4",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [
+      "酵素"
+    ],
+    "createdAt": "2025-11-20",
+    "views": 120,
+    "sales": 18
+  },
+  {
+    "id": "F005",
+    "name": "美白OEM-雪新肌C",
+    "desc": "L-胱胺酸 重酒石酸膽鹼 緩釋維他命C",
+    "image": "photo/LINE_ALBUM_OEM的 DM電子檔嗎_241204_10.jpg",
+    "url": "#modal-product5",
+    "section": "featured",
+    "price": 200,
+    "brand": "",
+    "tags": [
+      "維他命C"
+    ],
+    "createdAt": "2026-01-01",
+    "views": 10,
+    "sales": 10
+  },
+  {
+    "id": "F006",
+    "name": "海洋複合鈣鎂錠",
+    "desc": "四合一全方位補鈣配方 鈣鎂比黃金比例2:1 天然海藻鈣，含鈣鎂及72種 海洋礦物質",
+    "image": "photo/2_20240704145819_122537_31_20240703110318_122475_4711155931298_海洋復合鈣鎂錠.jpg",
+    "url": "#modal-product6",
+    "section": "featured",
+    "price": 300,
+    "brand": "",
+    "tags": [
+      "鈣鎂"
+    ],
+    "createdAt": "2026-01-01",
+    "views": 51,
+    "sales": 44
+  },
+  {
+    "id": "F007",
+    "name": "高單位B群EX錠",
+    "desc": "有助營養素運作、促進代謝 幫助維持神經系統正常功能 有助於維持正常的食慾",
+    "image": "photo/2_20240704145942_122538_31_20240703104105_122476_4711155932301_高單位b群ex錠.jpg",
+    "url": "#modal-product7",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [
+      "B群"
+    ],
+    "createdAt": "2026-01-04",
+    "views": 7,
+    "sales": 4
+  },
+  {
+    "id": "F008",
+    "name": "專利海藻鈣咀嚼錠",
+    "desc": "好鈣補給 骨質鈣化 促鈣吸收",
+    "image": "photo/2_20240704150057_122540_31_20240703105959_122477_4711155932318_專利海藻鈣咀嚼錠.jpg",
+    "url": "#modal-product8",
+    "section": "featured",
+    "price": 500,
+    "brand": "",
+    "tags": [
+      "鈣"
+    ],
+    "createdAt": "2026-01-07",
+    "views": 77,
+    "sales": 4
+  },
+  {
+    "id": "F009",
+    "name": "專利酵素益生菌",
+    "desc": "幫助流暢 幫助消化 調整體質",
+    "image": "photo/2_20240822111037_123418_line_album_產品主圖_240717_4_0.jpg",
+    "url": "#modal-product9",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [
+      "益生菌",
+      "酵素"
+    ],
+    "createdAt": "2026-01-07",
+    "views": 7,
+    "sales": 7
+  },
+  {
+    "id": "F010",
+    "name": "康福KF保健-德國KD魚油軟膠囊",
+    "desc": "95% OMEGA-3 rTG型式魚油 IFOS魚油認證",
+    "image": "photo/messageImage_1750399007332.jpg",
+    "url": "#modal-product10",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [
+      "魚油"
+    ],
+    "createdAt": "2026-01-07",
+    "views": 11,
+    "sales": 4
+  },
+  {
+    "id": "F011",
+    "name": "復睛康葉黃素軟膠囊60顆瓶",
+    "desc": "天然紅藻(含蝦紅素) 葉黃素強化配方，4重防護",
+    "image": "photo/33_20250310154544_132885_7_20230519162012_33969_05040110_復睛康軟膠囊_60粒.jpg",
+    "url": "#modal-product11",
+    "section": "featured",
+    "price": 200,
+    "brand": "",
+    "tags": [
+      "葉黃素"
+    ],
+    "createdAt": "2026-01-07",
+    "views": 444,
+    "sales": 14
+  },
+  {
+    "id": "F012",
+    "name": "游離葉黃素咀嚼錠",
+    "desc": "金盞花萃取物 葉黃素 黑醋栗萃取物 山桑子萃取物",
+    "image": "photo/2_20240715124413_122839_31_20240712110007_122792_4711155932325_游離葉黃素咀嚼錠.jpg",
+    "url": "#modal-product12",
+    "section": "featured",
+    "originalPrice": 800,
+    "salePrice": 780,
+    "brand": "",
+    "tags": [
+      "葉黃素"
+    ],
+    "createdAt": "2026-01-10",
+    "views": 77,
+    "sales": 4
+  },
+  {
+    "id": "F013",
+    "name": "源本補給室 易視利PLUS葉黃素軟膠囊",
+    "desc": "天然金盞花萃取(含葉黃素) 專利紅藻萃取(含蝦紅素) 專利黑豆種皮萃取+智利酒果",
+    "image": "photo/S__5455899_0.jpg",
+    "url": "#modal-product13",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [
+      "葉黃素"
+    ],
+    "createdAt": "2026-01-10",
+    "views": 400,
+    "sales": 50
+  },
+  {
+    "id": "F014",
+    "name": "源本補給室 德國KD魚油軟膠囊",
+    "desc": "全國規模最大Omega-3製造商 專利超臨界萃取技術 國際魚油標準IFOS五星評價",
+    "image": "photo/2_20250219110340_125636_德國kd魚油軟膠囊.png",
+    "url": "#modal-product14",
+    "section": "featured",
+    "price": 900,
+    "brand": "",
+    "tags": [
+      "魚油"
+    ],
+    "createdAt": "2026-01-10",
+    "views": 500,
+    "sales": 20
+  },
+  {
+    "id": "F015",
+    "name": "燕窩膠原蛋白",
+    "desc": "天然美容分子釘 維持水潤 美白清透亮澤 紅潤好氣色 私密健康防護",
+    "image": "photo/2_20240718161841_122838_line_album_產品主圖_240717_5_0.jpg",
+    "url": "#modal-product15",
+    "section": "featured",
+    "price": 600,
+    "brand": "",
+    "tags": [
+      "膠原蛋白"
+    ],
+    "createdAt": "2026-01-05",
+    "views": 20,
+    "sales": 10
+  },
+  {
+    "id": "F016",
+    "name": "鎂鈣先鈣鎂錠",
+    "desc": "專利紅藻鈣認證 專利鷹嘴豆萃取物(維生素K2)",
+    "image": "photo/62B3DC04-6FFC-41F0-8855-A5B3ABFB7369.jpg",
+    "url": "#modal-product16",
+    "section": "featured",
+    "price":   500,
+    "brand": "",
+    "tags": [
+      "鈣鎂"
+    ],
+    "createdAt": "2026-01-05",
+    "views": 20,
+    "sales": 20
+  },
+  {
+    "id": "F017",
+    "name": "關心鍵-care joint PLUS",
+    "desc": "乳木果萃取物 貓爪藤萃取 維生素D3 葡萄糖胺鹽酸鹽",
+    "image": "photo/messageImage_1746780794351.jpg",
+    "url": "#modal-product17",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [],
+    "createdAt": "2026-01-05",
+    "views": 100,
+    "sales": 88
+  },
+  {
+    "id": "F018",
+    "name": "關心鍵-care joint PLUS",
+    "desc": "乳木果萃取物 貓爪藤萃取 維生素D3 葡萄糖胺鹽酸鹽",
+    "image": "photo/messageImage_1746780794351.jpg",
+    "url": "#modal-product17",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [],
+    "createdAt": "2026-01-05",
+    "views": 100,
+    "sales": 88
+  },
+  {
+    "id": "F019",
+    "name": "關心鍵-care joint PLUS",
+    "desc": "乳木果萃取物 貓爪藤萃取 維生素D3 葡萄糖胺鹽酸鹽",
+    "image": "photo/messageImage_1746780794351.jpg",
+    "url": "#modal-product17",
+    "section": "featured",
+    "price": 400,
+    "brand": "",
+    "tags": [],
+    "createdAt": "2026-01-05",
+    "views": 100,
+    "sales": 88
+  },
+  {
+    "id": "N001",
+    "name": "3M 免縫膠帶（美容膠帶） 傷口護理專用｜剖腹產適",
+    "image": "photo/p1.jpg",
+    "price": 1200,
+    "desc": "",
+    "url": "#p1",
+    "section": "latest",
+    "brand": "",
+    "tags": [],
+    "createdAt": "2026-01-11",
+    "views": 80,
+    "sales": 30
+  },
+  {
+    "id": "N002",
+    "name": "必達定 殺菌口腔噴液 50ml",
+    "image": "photo/p2.jpg",
+    "originalPrice": 600,
+    "salePrice": 590,
+    "desc": "",
+    "url": "#p2",
+    "section": "latest",
+    "brand": "",
+    "tags": [],
+    "createdAt": "2026-01-12",
+    "views": 77,
+    "sales": 40
+  },
+  {
+    "id": "N003",
+    "name": "善存 3效順暢益生菌粉末 顆粒 40包",
+    "image": "photo/p3.jpg",
+    "price": 699,
+    "desc": "",
+    "url": "#p3",
+    "section": "latest",
+    "brand": "",
+    "tags": [
+      "益生菌"
+    ],
+    "createdAt": "2026-01-10",
+    "views": 100,
+    "sales": 20
+  },
+  {
+    "id": "N004",
+    "name": "Odaban 優得芬 止汗噴霧劑 (30ml/60ml)",
+    "image": "photo/p5.jpg",
+    "images": ["photo/p5.jpg", "photo/p5-2.jpg", "photo/p5-3.jpg"],
+    "promos": ["限時優惠", "買2件更省"],
+    "badges": ["熱賣"],
+    "variants": [
+    { "label": "30ml", "originalPrice": 60,"salePrice": 50, "stock": 6 },
+    { "label": "60ml", "price": 120, "stock": 0, "badges": ["缺貨"] }
+    ],
+    "desc": "",
+    "section": "latest",
+    "brand": "",
+    "tags": [],
+    "createdAt": "2026-01-10",
+    "views": 100,
+    "sales": 88
+  },
+  {
+  "id": "N005",
+  "name": "曼秀雷敦 軟膏 （12g/35g/75g）",
+  "image": "photo/p5.jpg",
+  "images": ["photo/p5.jpg", "photo/p5-2.jpg", "photo/p5-3.jpg"],
+  "promos": ["限時優惠", "買2件更省"],
+  "badges": ["熱賣"],
+
+  "variants": [
+    { "label": "12g", "originalPrice": 60,"salePrice": 50, "stock": 6 },
+    { "label": "35g", "price": 120, "stock": 0, "badges": ["缺貨"] },
+    { "label": "75g", "price": 220, "stock": 10 }
+  ],
+
+  "desc": "",
+  "section": "latest",
+  "brand": "",
+  "tags": [],
+  "createdAt": "2026-01-14",
+  "views": 20,
+  "sales": 8
+  }
+]

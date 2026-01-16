@@ -1,0 +1,1369 @@
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif;
+  background:#f5f6f8;
+  color:#111;
+}
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  padding-top:64px; /* navbar 高度 */
+}
+
+html{scroll-behavior:smooth}
+
+
+/* ===== Header ===== */
+.header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#111827;
+  color:#fff;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand h1{font-size:18px}
+.brand span{font-size:12px;opacity:.8}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 8px 12px;
+  border-radius: 999px;
+  user-select: none;
+}
+.cart b { font-size: 12px; opacity: .9; }
+
+.cart .badge {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #06240f;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+/* ===== Navbar layout ===== */
+.navbar{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  background: hsl(60, 77%, 91%);
+  z-index:2000;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  height:64px;
+  padding:0 16px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:16px;
+}
+
+/* logo */
+.logo{display:flex;align-items:center;white-space:nowrap}
+.logo img{height:42px;width:auto;display:block}
+
+/* main menu */
+.nav-list{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  min-width:0;
+}
+.nav-list a{
+  color:#222;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+  padding:8px 6px;
+}
+.nav-list a:hover{color:#c06aa8}
+
+/* burger toggle (mobile) */
+.nav-toggle{position:absolute;left:-9999px}
+.burger{
+  display:none;
+  width:44px;height:44px;
+  border-radius:10px;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:7px;
+  user-select:none;
+}
+.burger span{
+  width:22px;height:2px;background:#222;display:block;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+/* right tools: ... / search / cart */
+.nav-more{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+}
+.nav-search-btn{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.15);
+  background:#111827;
+  color:#fff;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  padding: 0;
+}
+.nav-search-btn i{
+  font-size: 16px;
+}
+.nav-search-btn:hover{filter:brightness(1.1)}
+
+/* cart icon + badge */
+.nav-cart{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;height:42px;
+  border-radius:999px;
+  text-decoration:none;
+  color:#111;
+  background:#f3f4f6;
+}
+.nav-cart:hover{background:#e5e7eb}
+.cart-badge{
+  position:absolute;
+  top:-6px; right:-6px;
+  min-width:18px;height:18px;
+  padding:0 5px;
+  border-radius:999px;
+  display:none; /* 有數字才顯示 */
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:700;
+  background:#ef4444;
+  color:#fff;
+}
+
+/* ===== Mega menu (desktop hover) ===== */
+.has-mega{position:relative}
+.mega{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  width:min(1100px, calc(100vw - 24px));
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:14px;
+  box-shadow:0 18px 45px rgba(0,0,0,.12);
+  padding:18px;
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:.18s ease;
+  z-index:3000;
+}
+.has-mega:hover .mega,
+.has-mega:focus-within .mega{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.mega-inner{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:18px;
+}
+
+
+/* 右側欄可捲動（像你截圖那樣品牌很多） */
+.mega-col.is-scroll{
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 6px;
+}
+.mega-col h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #111;
+}
+
+.mega-col a {
+  display: block;
+  padding: 6px auto;
+  color: #555;
+  font-size: 14px;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.mega-col a:hover {
+  color: #c06aa8;
+  transform: translateX(4px);
+}
+
+/* 品牌欄可捲動 */
+.mega-col.is-scroll {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+/* 手機點擊展開 */
+@media (max-width: 640px) {
+  .mega {
+    position: static;
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 16px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+  }
+
+  .has-mega.is-open .mega {
+    display: block;
+  }
+
+  .mega-inner {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== More drawer (checkbox) ===== */
+.more-toggle{position:absolute;left:-9999px}
+/* ====== 右側抽屜：⋯更多（純CSS）====== */
+
+/* checkbox 藏起來 */
+.more-toggle{
+  position: absolute;
+  left: -9999px;
+}
+
+.more-btn{
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  border-radius: 999px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.more-btn i{ font-size: 16px; }
+.more-btn:hover{ background: rgba(0,0,0,.04); }
+.more-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  color: #111;
+  font-size: 22px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ⋯按鈕外觀（你可換成 icon） */
+.more-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.14);
+  background:#fff;
+  color:#111;
+  font-size: 22px;
+  cursor:pointer;
+  user-select:none;
+}
+.more-btn{
+  box-sizing: border-box;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;  /* ✅ 預設置中 */
+
+  gap: 0;                   /* ✅ 重點：預設不要 gap */
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+
+  line-height: 1;           /* ✅ 讓 ⋯ 垂直更穩 */
+  transition:
+    width .22s ease,
+    padding .22s ease,
+    background .22s ease,
+    border-color .22s ease,
+    color .22s ease;
+}
+.more-btn::after{
+  content: "展開更多";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width .22s ease, opacity .15s ease;
+}
+
+.nav-more:hover .more-btn,
+.more-btn:hover,
+.more-btn:focus-visible{
+  width: 112px;
+  padding: 0 14px;
+  justify-content: flex-start;  /* hover 才靠左 */
+  gap: 8px;                      /* ✅ hover 才給 gap */
+  background: #e9f1f4;
+  border-color: #111;
+  color: #111;
+}
+
+.nav-more:hover .more-btn::after,
+.more-btn:hover::after,
+.more-btn:focus-visible::after{
+  opacity: 1;
+  max-width: 80px;
+}
+.sr-item{
+  cursor: pointer;
+}
+.sr-item:focus{
+  outline: 2px solid rgba(59,130,246,.45);
+  outline-offset: 2px;
+} 
+
+/* 半透明 + 模糊背景 */
+.more-overlay{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9998;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ✅ 右側抽屜本體：固定右邊、佔右半邊 */
+.more-panel{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: min(520px, 50vw);
+  max-width: 50vw;
+
+  background: #f7f5f0;
+  border-radius: 0;
+  box-shadow: -20px 0 60px rgba(0,0,0,.25);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  transform: translateX(100%);
+  transition: transform .25s ease;
+}
+
+/* 手機：更寬 */
+@media (max-width: 768px){
+  .more-panel{
+    width: 86vw;
+    max-width: 86vw;
+  }
+}
+
+/* 打開狀態 */
+.more-toggle:checked ~ .more-overlay{
+  display: block;
+}
+.more-toggle:checked ~ .more-overlay .more-panel{
+  transform: translateX(0);
+}
+
+/* 頭部固定 */
+.more-head{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 14px 16px;
+  background: #f7ecd1;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+/* 左上按鈕 */
+.more-actions{
+  display: flex;
+  gap: 10px;
+}
+.more-chip{
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* 關閉 */
+.more-close{
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background: rgba(255,255,255,.25);
+}
+
+/* 內容區可捲 */
+.more-body{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 12px 24px;
+  display: grid;
+  gap: 6px;
+}
+
+/* 列樣式（a / summary） */
+.more-body a{
+  display: block;
+  padding: 14px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #111;
+  font-weight: 800;
+  background: rgba(255,255,255,.20);
+}
+.more-body a:hover{
+  background: rgba(255,255,255,.35);
+}
+
+
+
+/* open drawer */
+.more-toggle:checked ~ .more-overlay{display:block}
+.more-toggle:checked ~ .more-overlay .more-panel{transform:translateX(0)}
+
+/* ===== Search modal ===== */
+.search-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  z-index:5000;
+  align-items:center;
+  justify-content:center;
+}
+.search-modal.is-open{display:flex}
+body.is-search-open{overflow:hidden}
+
+.search-panel{
+  width:min(980px, calc(100vw - 24px));
+  max-height:min(640px, calc(100vh - 24px));
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.3);
+  display:grid;
+  grid-template-rows:56px auto 1fr auto;
+}
+.search-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+.search-close{
+  width:34px;height:34px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+.search-body{padding:18px; overflow-y:auto}
+
+/* ===== Mobile navbar ===== */
+@media (max-width: 860px){
+  .burger{display:flex}
+
+  .nav-inner{
+    grid-template-columns:44px 1fr auto;
+  }
+  .nav-list{
+    position:absolute;
+    top:64px;
+    left:0;
+    right:0;
+    width:100%;
+    background:#e5e5e5;
+    display:grid;
+    gap:0;
+    padding:10px 16px;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(-6px);
+    transition:max-height .3s ease, opacity .25s ease, transform .25s ease;
+    border-top:1px solid rgba(0,0,0,.08);
+    justify-content:start;
+  }
+  .nav-list li{border-bottom:1px solid rgba(0,0,0,.06)}
+  .nav-list li:last-child{border-bottom:none}
+  .nav-list a{display:block;padding:12px 6px}
+
+  .nav-toggle:checked ~ .nav-list{
+    max-height:560px;
+    opacity:1;
+    transform:translateY(0);
+  }
+  .nav-toggle:checked + .burger span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+  .nav-toggle:checked + .burger span:nth-child(2){opacity:0}
+  .nav-toggle:checked + .burger span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+  /* 手機：不顯示桌機 mega，用你的抽屜/手機選單即可 */
+  .mega{display:none !important;}
+
+  /* 抽屜變大一點 */
+  .more-panel{width:86vw;max-width:86vw;}
+}
+
+
+/* ===== Layout ===== */
+.wrap{
+  max-width:1200px;
+  margin:24px auto 60px;
+  padding:0 18px;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:18px; 
+}
+
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr}
+}
+
+/* ===== 隱藏 radio（功能保留） ===== */
+input[name="filter"]{
+  position:absolute;
+  width:1px;
+  height:1px;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+}
+
+/* ===== 類型區 ===== */
+.panel{
+  background:#fff;
+  padding:16px;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
+}
+
+.panel h2{
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+.panel .field{
+  margin-bottom:14px;
+}
+.panel .field label{
+  display:block;
+  font-size:12px;
+  color:#374151;
+  margin-bottom:6px;
+}
+.panel .field input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  outline:none;
+  font-size:14px;
+}
+.panel .field input:focus{
+  border-color:#93c5fd;
+  box-shadow:0 0 0 3px rgba(59,130,246,.15);
+}
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.chip{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid #e5e7eb;
+  cursor:pointer;
+  font-size:13px;
+  background:#fff;
+}
+
+/* active chip */
+#f-all:checked ~ .wrap label[for="f-all"],
+#f-food:checked ~ .wrap label[for="f-food"],
+#f-c3:checked  ~ .wrap label[for="f-c3"],
+#f-cloth:checked ~ .wrap label[for="f-cloth"],
+#f-home:checked ~ .wrap label[for="f-home"]{
+  background:#eff6ff;
+  border-color:#3b82f6;
+}
+
+/* ===== 商品區 ===== */
+.toolbar{
+  background:#fff;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
+  margin-bottom:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:10px;
+}
+
+.toolbar h3{font-size:16px}
+.toolbar p{font-size:12px;color:#6b7280}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+@media(max-width:1100px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+
+.product{
+  background:#fff;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
+  overflow:hidden;
+}
+
+.thumb{
+  height:140px;
+  background:linear-gradient(135deg,#0f172a,#334155);
+}
+
+.pbody{ padding:12px; }
+.name{ font-weight:700 }
+.desc{ font-size:12px;color:#6b7280;margin:6px 0 }
+
+.bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
+}
+
+.btn{
+  background:#111827;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+/* ===== Cart Drawer ===== */
+.drawer-mask{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:50;
+}
+.drawer{
+  position:fixed;
+  top:0; right:0;
+  width:min(420px, 92vw);
+  height:100vh;
+  background:#fff;
+  z-index:60;
+  border-left:1px solid #e5e7eb;
+  display:flex;
+  flex-direction:column;
+  transform: translateX(0);
+}
+.drawer-head{
+  padding:14px 16px;
+  border-bottom:1px solid #e5e7eb;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.drawer-head h3{font-size:16px}
+.drawer-close{
+  border:1px solid #e5e7eb;
+  background:#fff;
+  border-radius:10px;
+  padding:8px 10px;
+  cursor:pointer;
+}
+.drawer-body{
+  padding:14px 16px;
+  overflow:auto;
+  flex:1;
+}
+.cart-item{
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:10px 12px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  margin-bottom:10px;
+}
+.cart-item .title{font-weight:700}
+.cart-item .sub{font-size:12px;color:#6b7280;margin-top:4px}
+.cart-item .price{font-weight:700}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+.qty button{
+  width:30px; height:30px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  cursor:pointer;
+  font-weight:700;
+}
+.qty .n{min-width:22px; text-align:center; font-weight:700;}
+.remove{
+  margin-top:8px;
+  font-size:12px;
+  color:#ef4444;
+  cursor:pointer;
+  user-select:none;
+}
+.drawer-foot{
+  border-top:1px solid #e5e7eb;
+  padding:12px 16px;
+  display:grid;
+  gap:10px;
+}
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  font-weight:800;
+}
+.checkout{
+  background:#111827;
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+  font-weight:700;
+}
+.empty{
+  padding:24px 8px;
+  color:#6b7280;
+  text-align:center;
+}
+/* ===== push layout when cart open ===== */
+:root{
+  --drawer-w: min(420px, 92vw);
+  --app-scale: .92; /* 你可以改 .9 ~ .96 */
+}
+
+/* 讓縮放更順 */
+#app{
+  transform-origin: left top;
+  transition: transform .22s ease;
+  will-change: transform;
+}
+
+/* 開啟購物車：頁面往左縮小，空出右側 drawer 的寬度 */
+body.cart-open #app{
+  transform: translateX(calc(-1 * var(--drawer-w))) scale(var(--app-scale));
+}
+
+/* drawer 寬度跟 CSS 變數一致 */
+.drawer{
+  width: var(--drawer-w);
+}
+
+/* 手機不建議縮小推開（太擠），改成全螢幕覆蓋更合理 */
+@media (max-width: 900px){
+  body.cart-open #app{
+    transform: none;
+  }
+  .drawer{
+    width: 100vw;
+  }
+}
+.qty-pick{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.qty-pick button{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.qty-pick input{
+  width:56px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid #e5e7eb;
+  text-align:center;
+  outline:none;
+  font-weight:700;
+}
+
+.qty-pick input:focus{
+  border-color:#93c5fd;
+  box-shadow:0 0 0 3px rgba(59,130,246,.15);
+}
+/* ===== 隱藏 number input 內建上下箭頭 ===== */
+
+/* Chrome, Edge, Safari */
+.qty-pick input::-webkit-outer-spin-button,
+.qty-pick input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.qty-pick input[type=number] {
+  -moz-appearance: textfield;
+}
+/* JS 會用到 */
+.hidden{ display:none !important; }
+.grid-note{padding:16px;color:#6b7280}
+.product .btn.add{margin-top:10px}
+/* =========================================================
+   ✅ 展開更多（⋯）右側抽屜 - cart.html 版本
+   不用 FLIP，不閃不消失
+   ========================================================= */
+
+/* 右側按鈕區（⋯ / 搜尋 / 購物車） */
+.nav-more{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+}
+
+/* checkbox 隱藏 */
+.more-toggle{
+  position:absolute;
+  left:-9999px;
+}
+
+/* ⋯ 按鈕 */
+.more-btn{
+  box-sizing: border-box;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  transition: width .22s ease, padding .22s ease, background .22s ease, border-color .22s ease;
+}
+.more-btn::after{
+  content:"展開更多";
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width .22s ease, opacity .15s ease;
+}
+.nav-more:hover .more-btn,
+.more-btn:hover,
+.more-btn:focus-visible{
+  width: 112px;
+  padding: 0 14px;
+  justify-content: flex-start;
+  gap: 8px;
+  background: #e9f1f4;
+  border-color: #111;
+}
+.nav-more:hover .more-btn::after,
+.more-btn:hover::after,
+.more-btn:focus-visible::after{
+  opacity: 1;
+  max-width: 80px;
+}
+
+/* overlay 遮罩 */
+.more-overlay{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 99998;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ✅ checkbox 打開 overlay */
+.more-toggle:checked ~ .more-overlay{
+  display:block;
+}
+
+/* ✅ 抽屜本體：右半邊滿高 */
+.more-panel{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(520px, 50vw);
+  max-width: 50vw;
+  background: #f7f5f0;
+  box-shadow: -18px 0 40px rgba(0,0,0,.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  transform: translateX(100%);
+  transition: transform .28s ease;
+}
+
+/* ✅ 打開時滑入 */
+.more-toggle:checked ~ .more-overlay .more-panel{
+  transform: translateX(0);
+}
+
+/* header 固定 */
+.more-head{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #f7ecd1;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+/* 內容可捲 */
+.more-body{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 12px 24px;
+  display: grid;
+  gap: 10px;
+}
+
+/* 右上角關閉 */
+.more-close{
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background: rgba(255,255,255,.25);
+}
+
+/* buttons */
+.more-actions{
+  display:flex;
+  gap:10px;
+}
+.more-chip{
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  cursor: pointer;
+  background: #111;
+  color: #fff;
+}
+
+/* ===== details 手風琴：用原生 open，不做 JS 高度動畫 ===== */
+.more-acc summary{
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+.more-acc summary::-webkit-details-marker{ display:none; }
+
+.more-row{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.22);
+  font-weight: 900;
+  color:#111;
+}
+.more-row.link{ text-decoration:none; }
+
+.more-icon{
+  transition: transform .18s ease;
+  font-weight: 900;
+}
+.more-acc[open] .more-icon{
+  transform: rotate(45deg);
+}
+
+/* 子選單排版（你想要 cart 那種直式） */
+.more-sub{
+  margin-top: 10px;
+  padding: 0 12px 6px;
+}
+.more-sub-group{
+  padding: 14px 0;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+.more-sub-group:first-child{ border-top: 0; padding-top: 0; }
+.more-sub-title{
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(0,0,0,.55);
+  margin: 0 0 10px;
+  letter-spacing: .5px;
+}
+.more-sub a{
+  display:block;
+  padding: 14px 0;
+  font-size: 18px;
+  font-weight: 900;
+  color:#111;
+  text-decoration:none;
+  line-height: 1.25;
+}
+.more-sub a:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.more-note{
+  font-size: 12px;
+  opacity: .7;
+}
+
+/* ✅ 手機：抽屜變窄 */
+@media (max-width: 768px){
+  .more-panel{
+    width: 86vw;
+    max-width: 86vw;
+  }
+}
+
+/* ✅ 手機：你本來有漢堡，所以不顯示 ⋯ 抽屜（可改成你要顯示也行） */
+@media (max-width: 860px){
+  .nav-more{ display:none !important; }
+}
+
+/* ✅ 鎖背景捲動時用 */
+body.is-more-open{
+  overflow: hidden;
+}
+.cart-page{
+  max-width:1200px;
+  margin:80px auto 60px;
+  padding:0 20px;
+}
+
+.cart-box{
+  background:#fff;
+  border-radius:16px;
+  border:1px solid #e5e7eb;
+  padding:20px;
+}
+
+.cart-title{
+  font-size:20px;
+  margin-bottom:16px;
+}
+
+.cart-table{
+  width:100%;
+}
+
+.cart-thead,
+.cart-row{
+  display:grid;
+  grid-template-columns: 1fr 120px 100px 120px 50px;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.cart-thead{
+  font-weight:800;
+  border-bottom:2px solid #111;
+}
+
+.cart-row select{
+  padding:6px 8px;
+  border-radius:8px;
+  border:1px solid #e5e7eb;
+}
+
+.cart-row .removeBtn{
+  border:none;
+  background:#111;
+  color:#fff;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.cart-tfoot{
+  display:flex;
+  justify-content:flex-end;
+  gap:20px;
+  padding-top:16px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.right{text-align:right}
+.center{text-align:center}
+
+.cart-empty{
+  padding:40px 0;
+  text-align:center;
+  color:#6b7280;
+}
+/* ✅ ⋯按鈕顯示規則：你可以改成永遠顯示或只在某斷點顯示 */
+.nav-more{ display:flex; align-items:center; gap:10px; }
+
+/* 方案1：永遠顯示 ⋯（桌機/平板都能開抽屜） */
+/* .more-btn{ display:inline-flex; } */
+
+@media (min-width: 861px){
+  .more-btn{ display:inline-flex; }
+}
+
+/* ===== 抽屜內「完整導覽」 ===== */
+.more-nav{ display:grid; gap:10px; }
+
+/* 一般連結列 */
+.more-nav a.more-link{
+  display:block;
+  padding:14px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  color:#111;
+  font-weight:900;
+  background: rgba(255,255,255,.20);
+}
+.more-nav a.more-link:hover{ background: rgba(255,255,255,.35); }
+
+/* 手風琴（全部商品 mega） */
+.more-nav details.more-acc{
+  border-radius:12px;
+  background: rgba(255,255,255,.16);
+  overflow:hidden;
+}
+
+.more-nav summary.more-row{
+  list-style:none;
+  cursor:pointer;
+  padding:14px 14px;
+  font-weight:900;
+}
+.more-nav summary.more-row::-webkit-details-marker{ display:none; }
+
+.more-nav .more-sub{
+  padding: 0 14px 14px;
+  display:block;
+}
+
+.more-nav .more-sub-group{
+  padding: 12px 0;
+  border-top: 1px solid rgba(0,0,0,.10);
+}
+.more-nav .more-sub-group:first-child{ border-top:0; padding-top:0; }
+
+.more-nav .more-sub-title{
+  font-size:13px;
+  font-weight:900;
+  color: rgba(0,0,0,.55);
+  margin: 0 0 8px;
+  letter-spacing:.5px;
+}
+
+.more-nav .more-sub a{
+  display:block;
+  padding:10px 0;
+  font-size:16px;
+  font-weight:900;
+  color:#111;
+  text-decoration:none;
+  background: transparent;
+}
+.more-nav .more-sub a:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+/* =========================
+   ✅ Navbar 顏色：頂部淡黃 → 滑下更淡黃 + 陰影 + 微模糊
+   ========================= */
+
+:root{
+  --nav-h: 64px;
+
+  /* 頂部：淡黃色（你現在那個） */
+  --nav-top-bg: hsl(60, 77%, 91%);
+
+  /* 滑下：更淡黃（更接近白、但仍帶黃） */
+  --nav-scrolled-bg: hsla(60, 70%, 96%, .92);
+}
+
+.navbar.is-scrolled{
+  background: var(--nav-scrolled-bg);
+  box-shadow: 0 10px 28px rgba(0,0,0,.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 讓內容不被 navbar 壓住（你原本是 40px 太小） */
+body{
+  padding-top: var(--nav-h) !important;
+}
+/* overlay 開啟時（你已經有 body.is-more-open / body.is-search-open / body.cart-open） */
+body.is-more-open .navbar,
+body.is-search-open .navbar,
+body.cart-open .navbar{
+  background: var(--nav-scrolled-bg);
+  box-shadow: 0 10px 28px rgba(0,0,0,.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+/* =========================
+   ✅ 修復：more overlay 被蓋住（提升整個 navbar/overlay 層級）
+   ========================= */
+
+/* navbar 整體提到很上層 */
+.navbar{
+  z-index: 100000 !important;
+}
+
+/* more overlay / panel 再往上 */
+.more-overlay{
+  z-index: 100001 !important;
+}
+
+.more-panel{
+  z-index: 100002 !important;
+}
+
+/*（可選）確保購物車 drawer 仍在上面或下面，你自己要誰蓋誰）
+  如果你希望「⋯抽屜」能蓋過購物車 drawer，就讓 drawer 低於 more
+*/
+.drawer-mask{ z-index: 90000 !important; }
+.drawer{ z-index: 90001 !important; }
+
+/* search modal 如果你希望永遠最高，就再更高（不想就不要加） */
+.search-modal{ z-index: 110000 !important; }
+
+/* =========================
+   ✅ cart.html：手機版也維持「右側抽屜」(跟 index 一樣)
+   ========================= */
+@media (max-width: 860px){
+
+  /* 不要把 nav-more 隱藏（不然根本不能開抽屜） */
+  .nav-more{ display:flex !important; }
+
+  /* 手機也允許顯示 ⋯（你想用漢堡就把這行拿掉） */
+  .more-btn{ display:inline-flex !important; }
+
+  /* 把你前面那段「static + transparent」覆蓋回抽屜 */
+  .more-panel{
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 86vw !important;
+    max-width: 86vw !important;
+
+    background: #f7f5f0 !important;
+    box-shadow: -18px 0 40px rgba(0,0,0,.18) !important;
+
+    transform: translateX(100%) !important;
+    transition: transform .28s ease !important;
+  }
+
+  /* 確保打開時會滑進來 */
+  .more-toggle:checked ~ .more-overlay{ display:block !important; }
+  .more-toggle:checked ~ .more-overlay .more-panel{ transform: translateX(0) !important; }
+}

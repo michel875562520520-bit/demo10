@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Member</title>
+
+  <!-- 共用 CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- 會員頁專用 CSS -->
+  <link rel="stylesheet" href="member.css">
+
+  <link href="css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="css/icofont.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+
+
+<body>
+  <nav class="navbar">
+  <div class="nav-inner">
+
+    <a class="logo" href="index.html#home">
+      <img src="photo/logo.png" alt="">
+      <h2>柿子購物</h2>
+    </a>
+
+    <!-- ✅ 手機漢堡 -->
+    <input class="nav-toggle" id="nav-toggle" type="checkbox"/>
+    <label aria-label="開啟選單" class="burger" for="nav-toggle">
+      <span></span><span></span><span></span>
+    </label>
+
+    <!-- ✅ 主選單 -->
+    <ul class="nav-list">
+      <li><a href="index.html#home">回首頁</a></li>
+      <li><a href="index.html#event">最新優惠</a></li>
+
+      <li class="has-mega">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link" href="index.html#products">
+          全部商品 <i class="fa-solid fa-angle-down" style="margin-left:6px;"></i>
+        </a>
+
+        <div class="mega">
+  <div class="mega-inner">
+
+    <div class="mega-col" data-mega-col="types">
+      <h4>依種類</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="brands">
+      <h4>依品牌</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col" data-mega-col="audiences">
+      <h4>依對象</h4>
+      <div class="mega-links"></div>
+    </div>
+
+    <div class="mega-col is-scroll" data-mega-col="prices">
+      <h4>依價格</h4>
+      <div class="mega-links"></div>
+    </div>
+
+  </div>
+</div>
+      </li>
+
+    
+
+      <li class="hide-md"><a href="index.html#deal">優惠搶先購</a></li>
+      <li class="hide-md"><a href="index.html#tribe">族群選購</a></li>
+      <li><a href="index.html#contact">聯絡我們</a></li>
+    </ul>
+
+    <!-- ✅ 右側 ⋯ -->
+    <div class="nav-more">
+      <input class="more-toggle" id="more-toggle" type="checkbox"/>
+      <label aria-label="展開更多" class="more-btn" for="more-toggle">⋯</label>
+
+      <!-- 🔍 搜尋按鈕 -->
+      <button aria-label="開啟搜尋" class="nav-search-btn" id="openSearch" type="button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+      <a aria-label="購物車" class="nav-cart" href="cart.html" id="cartLink">🛒
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+
+      <!-- 👤 會員中心 -->
+      <a aria-label="會員中心" class="nav-member" href="member.html">
+         <i class="fa-regular fa-user"></i>
+      </a>
+
+      <div aria-label="更多選單" aria-modal="true" class="more-overlay" role="dialog">
+        <div class="more-panel">
+          <div class="more-head">
+            <div class="more-actions">
+              <button class="more-chip" id="moreExpandAll" type="button">全部展開</button>
+              <button class="more-chip" id="moreCollapseAll" type="button">全部收合</button>
+            </div>
+            <label aria-label="關閉" class="more-close" for="more-toggle">✕</label>
+          </div>
+
+          <div class="more-body">
+            <details class="more-acc">
+              <summary class="more-row">
+                <span class="more-text">熱門商品</span>
+                <span class="more-icon">＋</span>
+              </summary>
+              <div class="more-sub">
+                <div class="more-sub-group">
+                  <div class="more-sub-title">依功能</div>
+                  <a href="#products">日常補給</a>
+                  <a href="#products">促進代謝</a>
+                  <a href="#products">防禦升級</a>
+                  <a href="#products">舒緩潤喉</a>
+                  <a href="#products">消化舒暢</a>
+                  <a href="#products">明亮視界</a>
+                </div>
+                <div class="more-sub-group">
+                  <div class="more-sub-title">依成分</div>
+                  <a href="#products">維生素B/C</a>
+                  <a href="#products">維生素D/E</a>
+                  <a href="#products">綜合維生素/礦物質</a>
+                  <a href="#products">魚油/EPA/DHA</a>
+                  <a href="#products">益生菌/乳酸菌</a>
+                  <a href="#products">GABA</a>
+                </div>
+                <div class="more-sub-group">
+                  <div class="more-sub-title">依族群</div>
+                  <a href="#products">樂齡專區</a>
+                  <a href="#products">女性專區</a>
+                  <a href="#products">男性專區</a>
+                  <a href="#products">兒童專區</a>
+                  <a href="#products">孕媽咪專區</a>
+                  <a href="#products">送禮專區</a>
+                </div>
+                <div class="more-sub-group">
+                  <div class="more-sub-title">依品牌</div>
+                  <a href="#products">自然悅活</a>
+                  <a href="#products">精準富康</a>
+                  <a href="#products">桂格</a>
+                  <a href="#products">三多</a>
+                  <a href="#products">益富</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more-acc">
+              <summary class="more-row">
+                <span class="more-label">
+                  <i class="fa-solid fa-bag-shopping"></i>
+                  <span>最新商品</span>
+                </span>
+                <span class="more-note">最新上架</span>
+              </summary>
+              <div class="more-sub">
+                <a href="#products-drag">3M 免縫膠帶（美容膠帶）</a>
+                <a href="#products-drag">必達定 殺菌口腔噴液</a>
+                <a href="#products-drag">善存 3效順暢益生菌</a>
+                <a href="#products-drag">Odaban 止汗噴霧</a>
+                <a href="#products-drag">曼秀雷敦 軟膏</a>
+              </div>
+            </details>
+
+            <a class="more-row link" href="#business"><span class="more-text">主要營業項目</span></a>
+            <a class="more-row link" href="#feature"><span class="more-text">#</span></a>
+            <a class="more-row link" href="#service"><span class="more-text">#</span></a>
+            <a class="more-row link" href="#join"><span class="more-text">#</span></a>
+          </div>
+        </div>
+      </div><!-- /.more-overlay -->
+    </div><!-- /.nav-more -->
+  </div><!-- /.nav-inner -->
+</nav>
+
+  <!-- ✅ Page -->
+  <main class="member-shell">
+    <!-- 未登入：登入/註冊 -->
+    <section class="member-auth" id="authView" hidden>
+      <div class="member-card">
+        <div class="member-card-head">
+          <div class="member-title">會員中心</div>
+          <div class="member-sub">登入享首購禮、訂單追蹤與收藏清單</div>
+        </div>
+
+        <div class="member-tabs" role="tablist" aria-label="Member tabs">
+          <button class="tab-btn is-active" type="button" data-tab="login" role="tab" aria-selected="true">登入</button>
+          <button class="tab-btn" type="button" data-tab="register" role="tab" aria-selected="false">註冊</button>
+        </div>
+
+        <div class="member-panels">
+          <!-- Login -->
+          <form class="panel is-active" id="loginPanel" data-panel="login">
+            <div class="field">
+              <label class="label" for="loginEmail">Email</label>
+              <input class="input" id="loginEmail" type="email" placeholder="example@gmail.com" required>
+            </div>
+
+            <div class="field">
+              <label class="label" for="loginPw">密碼</label>
+              <input class="input" id="loginPw" type="password" placeholder="至少 6 碼" minlength="6" required>
+            </div>
+
+            <button class="primary-btn" type="submit">
+              <i class="fa-solid fa-right-to-bracket"></i> 登入
+            </button>
+
+            <div class="hint-row">
+              <a class="text-link" href="#" id="fakeForgot">忘記密碼？</a>
+              <span class="hint">（示意功能）</span>
+            </div>
+          </form>
+
+          <!-- Register -->
+          <form class="panel" id="registerPanel" data-panel="register">
+            <div class="field">
+              <label class="label" for="regName">姓名</label>
+              <input class="input" id="regName" type="text" placeholder="王小明" required>
+            </div>
+
+            <div class="field">
+              <label class="label" for="regEmail">Email</label>
+              <input class="input" id="regEmail" type="email" placeholder="example@gmail.com" required>
+            </div>
+
+            <div class="field">
+              <label class="label" for="regPw">密碼</label>
+              <input class="input" id="regPw" type="password" placeholder="至少 6 碼" minlength="6" required>
+            </div>
+
+            <label class="check">
+              <input type="checkbox" id="agree" required>
+              <span>我同意會員條款與隱私權政策</span>
+            </label>
+
+            <button class="primary-btn" type="submit">
+              <i class="fa-solid fa-user-plus"></i> 建立帳號
+            </button>
+
+            <div class="benefits">
+              <div class="benefits-title">會員好康</div>
+              <ul>
+                <li>首購禮金 200（示意）</li>
+                <li>訂單查詢 / 退換貨追蹤</li>
+                <li>收藏清單與到貨通知</li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 已登入：會員中心 -->
+    <section class="member-dash" id="dashView" hidden>
+      <div class="dash-head">
+        <div class="avatar">
+          <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="dash-welcome">
+          <div class="welcome-title">Hi, <span id="userName">會員</span></div>
+          <div class="welcome-sub">歡迎回來 ✨ 你的會員狀態：<span class="pill">Active</span></div>
+        </div>
+
+        <div class="dash-actions">
+          <a class="ghost-btn" href="cart.html"><i class="fa-solid fa-bag-shopping"></i> 繼續逛逛</a>
+          <button class="ghost-btn" id="logoutBtn" type="button"><i class="fa-solid fa-right-from-bracket"></i> 登出</button>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <section class="box">
+          <div class="box-title">個人資料</div>
+          <div class="kv">
+            <div class="k">Email</div>
+            <div class="v" id="userEmail">—</div>
+            <div class="k">會員等級</div>
+            <div class="v">Silver（示意）</div>
+            <div class="k">購物金</div>
+            <div class="v">NT$ 200（示意）</div>
+          </div>
+          <button class="mini-btn" type="button" id="fakeEditProfile"><i class="fa-solid fa-pen"></i> 編輯資料（示意）</button>
+        </section>
+
+        <section class="box">
+          <div class="box-title">快捷功能</div>
+          <div class="quick">
+            <a class="quick-item" href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span>我的購物車</span></a>
+            <a class="quick-item" href="#"><i class="fa-regular fa-heart"></i><span>收藏清單</span></a>
+            <a class="quick-item" href="#"><i class="fa-solid fa-truck-fast"></i><span>訂單追蹤</span></a>
+            <a class="quick-item" href="#"><i class="fa-regular fa-envelope"></i><span>通知設定</span></a>
+          </div>
+        </section>
+
+        <section class="box box-wide">
+          <div class="box-title">最近訂單（示意）</div>
+          <div class="order-table">
+            <div class="order-row order-head">
+              <div>訂單編號</div><div>日期</div><div>金額</div><div>狀態</div>
+            </div>
+
+            <div class="order-row">
+              <div>#A24018</div><div>2026/01/12</div><div>NT$ 1,560</div><div><span class="status done">已完成</span></div>
+            </div>
+            <div class="order-row">
+              <div>#A24005</div><div>2026/01/06</div><div>NT$ 3,120</div><div><span class="status ship">配送中</span></div>
+            </div>
+            <div class="order-row">
+              <div>#A23988</div><div>2025/12/28</div><div>NT$ 1,680</div><div><span class="status pay">待付款</span></div>
+            </div>
+          </div>
+
+          <a class="text-link" href="#">查看全部訂單 →（示意）</a>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // navbar 往下變透明（沿用你原本）
+    const header = document.getElementById('siteHeader');
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 30);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+
+  <script>
+    // ====== Fake member auth (localStorage) ======
+    const KEY = 'SHOP_MEMBER';
+
+    const authView = document.getElementById('authView');
+    const dashView = document.getElementById('dashView');
+
+    const userNameEl = document.getElementById('userName');
+    const userEmailEl = document.getElementById('userEmail');
+
+    // Tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const tab = btn.dataset.tab;
+        tabBtns.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+
+        panels.forEach(p => p.classList.toggle('is-active', p.dataset.panel === tab));
+      });
+    });
+
+    function getMember(){
+      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); }
+      catch { return null; }
+    }
+    function setMember(data){
+      localStorage.setItem(KEY, JSON.stringify(data));
+    }
+    function clearMember(){
+      localStorage.removeItem(KEY);
+    }
+
+    function render(){
+      const m = getMember();
+      const loggedIn = !!(m && m.email);
+
+      authView.hidden = loggedIn;
+      dashView.hidden = !loggedIn;
+
+      if (loggedIn){
+        userNameEl.textContent = m.name || '會員';
+        userEmailEl.textContent = m.email || '—';
+      }
+    }
+
+    // Login
+    document.getElementById('loginPanel').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pw = document.getElementById('loginPw').value;
+
+      if (pw.length < 6){
+        alert('密碼至少 6 碼（示意）');
+        return;
+      }
+
+      // 假登入：直接存
+      setMember({ name: email.split('@')[0] || '會員', email });
+      render();
+    });
+
+    // Register
+    document.getElementById('registerPanel').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const pw = document.getElementById('regPw').value;
+
+      if (pw.length < 6){
+        alert('密碼至少 6 碼（示意）');
+        return;
+      }
+
+      setMember({ name, email });
+      render();
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      clearMember();
+      render();
+    });
+
+    // Fake actions
+    document.getElementById('fakeForgot').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('忘記密碼流程（示意）');
+    });
+
+    document.getElementById('fakeEditProfile').addEventListener('click', () => {
+      alert('編輯資料（示意）');
+    });
+
+    // init
+    render();
+  </script>
+</body>
+</html>
